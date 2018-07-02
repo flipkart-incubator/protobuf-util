@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "com.protobuf.ext.example.person";
+option java_multiple_files = true;
+
+message Person {
+    string name = 1;
+    int32 id = 2;
+}
