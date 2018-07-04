@@ -1,4 +1,4 @@
-package com.protobuf.ext.generator.test.sample;
+package com.flipkart.protobuf.ext.generator.test.sample;
 
 public class SearchRequest {
 	private String query;

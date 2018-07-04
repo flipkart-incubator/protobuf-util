@@ -1,9 +1,9 @@
-package com.protobuf.ext.generator.test;
+package com.flipkart.protobuf.ext.generator.test;
 
-import com.protobuf.ext.generator.IProtoFileGenerator;
-import com.protobuf.ext.generator.impl.BasicProtoFileGenerator;
-import com.protobuf.ext.generator.test.sample.Person;
-import com.protobuf.ext.generator.test.sample.SearchRequest;
+import com.flipkart.protobuf.ext.generator.IProtoFileGenerator;
+import com.flipkart.protobuf.ext.generator.impl.BasicProtoFileGenerator;
+import com.flipkart.protobuf.ext.generator.test.sample.Person;
+import com.flipkart.protobuf.ext.generator.test.sample.SearchRequest;
 import org.junit.Test;
 
 

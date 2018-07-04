@@ -1,7 +1,7 @@
-package com.protobuf.ext.example;
+package com.flipkart.protobuf.ext.example;
 
 
-import com.protobuf.ext.example.person.Person;
+import com.flipkart.protobuf.ext.example.person.Person;
 
 public class Main {
 	public static void main(String[] args) {

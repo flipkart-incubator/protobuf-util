@@ -26,3 +26,5 @@ hs_err_pid*
 */target
 pom.xml
 *.iml
+.DS_Store
+*/.DS_Store

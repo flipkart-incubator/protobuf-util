@@ -1,6 +1,6 @@
-package com.protobuf.ext.generator.impl;
+package com.flipkart.protobuf.ext.generator.impl;
 
-import com.protobuf.ext.generator.IProtoFileGenerator;
+import com.flipkart.protobuf.ext.generator.IProtoFileGenerator;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
