@@ -19,6 +19,11 @@ public final class PersonOuterClass {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_Person_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_Person_PhoneNumber_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_Person_PhoneNumber_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -28,9 +33,14 @@ public final class PersonOuterClass {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\014person.proto\"\"\n\006Person\022\014\n\004name\030\001 \001(\t\022\n" +
-      "\n\002id\030\002 \001(\005B,\n(com.flipkart.protobuf.ext." +
-      "example.personP\001b\006proto3"
+      "\n\014person.proto\"\324\001\n\006Person\022\014\n\004name\030\001 \001(\t\022" +
+      "\n\n\002id\030\002 \001(\005\022\r\n\005email\030\003 \001(\t\022(\n\013phoneNumbe" +
+      "r\030\004 \003(\0132\023.Person.PhoneNumber\032w\n\013PhoneNum" +
+      "ber\022\016\n\006number\030\001 \001(\t\022+\n\004type\030\002 \001(\0162\035.Pers" +
+      "on.PhoneNumber.PhoneType\"+\n\tPhoneType\022\n\n" +
+      "\006MOBILE\020\000\022\010\n\004HOME\020\001\022\010\n\004WORK\020\002B,\n(com.fli" +
+      "pkart.protobuf.ext.example.personP\001b\006pro" +
+      "to3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -49,7 +59,13 @@ public final class PersonOuterClass {
     internal_static_Person_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Person_descriptor,
-        new java.lang.String[] { "Name", "Id", });
+        new java.lang.String[] { "Name", "Id", "Email", "PhoneNumber", });
+    internal_static_Person_PhoneNumber_descriptor =
+      internal_static_Person_descriptor.getNestedTypes().get(0);
+    internal_static_Person_PhoneNumber_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_Person_PhoneNumber_descriptor,
+        new java.lang.String[] { "Number", "Type", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

@@ -10,6 +10,7 @@ public  final class SearchRequest extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:SearchRequest)
     SearchRequestOrBuilder {
+private static final long serialVersionUID = 0L;
   // Use SearchRequest.newBuilder() to construct.
   private SearchRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
@@ -23,14 +24,19 @@ public  final class SearchRequest extends
   @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
-    return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    return this.unknownFields;
   }
   private SearchRequest(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
+    if (extensionRegistry == null) {
+      throw new java.lang.NullPointerException();
+    }
     int mutable_bitField0_ = 0;
+    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+        com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
       boolean done = false;
       while (!done) {
@@ -39,12 +45,6 @@ public  final class SearchRequest extends
           case 0:
             done = true;
             break;
-          default: {
-            if (!input.skipField(tag)) {
-              done = true;
-            }
-            break;
-          }
           case 10: {
             java.lang.String s = input.readStringRequireUtf8();
 
@@ -61,6 +61,13 @@ public  final class SearchRequest extends
             resultPerPage_ = input.readInt32();
             break;
           }
+          default: {
+            if (!parseUnknownFieldProto3(
+                input, unknownFields, extensionRegistry, tag)) {
+              done = true;
+            }
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -69,6 +76,7 @@ public  final class SearchRequest extends
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
+      this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
@@ -77,6 +85,7 @@ public  final class SearchRequest extends
     return com.flipkart.protobuf.ext.example.search.Search.internal_static_SearchRequest_descriptor;
   }
 
+  @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
     return com.flipkart.protobuf.ext.example.search.Search.internal_static_SearchRequest_fieldAccessorTable
@@ -137,6 +146,7 @@ public  final class SearchRequest extends
   }
 
   private byte memoizedIsInitialized = -1;
+  @java.lang.Override
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
     if (isInitialized == 1) return true;
@@ -146,6 +156,7 @@ public  final class SearchRequest extends
     return true;
   }
 
+  @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
     if (!getQueryBytes().isEmpty()) {
@@ -157,8 +168,10 @@ public  final class SearchRequest extends
     if (resultPerPage_ != 0) {
       output.writeInt32(3, resultPerPage_);
     }
+    unknownFields.writeTo(output);
   }
 
+  @java.lang.Override
   public int getSerializedSize() {
     int size = memoizedSize;
     if (size != -1) return size;
@@ -175,11 +188,11 @@ public  final class SearchRequest extends
       size += com.google.protobuf.CodedOutputStream
         .computeInt32Size(3, resultPerPage_);
     }
+    size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
   }
 
-  private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
@@ -197,6 +210,7 @@ public  final class SearchRequest extends
         == other.getPageNumber());
     result = result && (getResultPerPage()
         == other.getResultPerPage());
+    result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
 
@@ -218,6 +232,17 @@ public  final class SearchRequest extends
     return hash;
   }
 
+  public static com.flipkart.protobuf.ext.example.search.SearchRequest parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static com.flipkart.protobuf.ext.example.search.SearchRequest parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
   public static com.flipkart.protobuf.ext.example.search.SearchRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -277,6 +302,7 @@ public  final class SearchRequest extends
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
 
+  @java.lang.Override
   public Builder newBuilderForType() { return newBuilder(); }
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
@@ -284,6 +310,7 @@ public  final class SearchRequest extends
   public static Builder newBuilder(com.flipkart.protobuf.ext.example.search.SearchRequest prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
+  @java.lang.Override
   public Builder toBuilder() {
     return this == DEFAULT_INSTANCE
         ? new Builder() : new Builder().mergeFrom(this);
@@ -307,6 +334,7 @@ public  final class SearchRequest extends
       return com.flipkart.protobuf.ext.example.search.Search.internal_static_SearchRequest_descriptor;
     }
 
+    @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.flipkart.protobuf.ext.example.search.Search.internal_static_SearchRequest_fieldAccessorTable
@@ -329,6 +357,7 @@ public  final class SearchRequest extends
               .alwaysUseFieldBuilders) {
       }
     }
+    @java.lang.Override
     public Builder clear() {
       super.clear();
       query_ = "";
@@ -340,15 +369,18 @@ public  final class SearchRequest extends
       return this;
     }
 
+    @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
       return com.flipkart.protobuf.ext.example.search.Search.internal_static_SearchRequest_descriptor;
     }
 
+    @java.lang.Override
     public com.flipkart.protobuf.ext.example.search.SearchRequest getDefaultInstanceForType() {
       return com.flipkart.protobuf.ext.example.search.SearchRequest.getDefaultInstance();
     }
 
+    @java.lang.Override
     public com.flipkart.protobuf.ext.example.search.SearchRequest build() {
       com.flipkart.protobuf.ext.example.search.SearchRequest result = buildPartial();
       if (!result.isInitialized()) {
@@ -357,6 +389,7 @@ public  final class SearchRequest extends
       return result;
     }
 
+    @java.lang.Override
     public com.flipkart.protobuf.ext.example.search.SearchRequest buildPartial() {
       com.flipkart.protobuf.ext.example.search.SearchRequest result = new com.flipkart.protobuf.ext.example.search.SearchRequest(this);
       result.query_ = query_;
@@ -366,32 +399,39 @@ public  final class SearchRequest extends
       return result;
     }
 
+    @java.lang.Override
     public Builder clone() {
       return (Builder) super.clone();
     }
+    @java.lang.Override
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.setField(field, value);
     }
+    @java.lang.Override
     public Builder clearField(
         com.google.protobuf.Descriptors.FieldDescriptor field) {
       return (Builder) super.clearField(field);
     }
+    @java.lang.Override
     public Builder clearOneof(
         com.google.protobuf.Descriptors.OneofDescriptor oneof) {
       return (Builder) super.clearOneof(oneof);
     }
+    @java.lang.Override
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
+        int index, java.lang.Object value) {
       return (Builder) super.setRepeatedField(field, index, value);
     }
+    @java.lang.Override
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
+        java.lang.Object value) {
       return (Builder) super.addRepeatedField(field, value);
     }
+    @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
       if (other instanceof com.flipkart.protobuf.ext.example.search.SearchRequest) {
         return mergeFrom((com.flipkart.protobuf.ext.example.search.SearchRequest)other);
@@ -413,14 +453,17 @@ public  final class SearchRequest extends
       if (other.getResultPerPage() != 0) {
         setResultPerPage(other.getResultPerPage());
       }
+      this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
     }
 
+    @java.lang.Override
     public final boolean isInitialized() {
       return true;
     }
 
+    @java.lang.Override
     public Builder mergeFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -559,14 +602,16 @@ public  final class SearchRequest extends
       onChanged();
       return this;
     }
+    @java.lang.Override
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.setUnknownFieldsProto3(unknownFields);
     }
 
+    @java.lang.Override
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return this;
+      return super.mergeUnknownFields(unknownFields);
     }
 
 
@@ -585,11 +630,12 @@ public  final class SearchRequest extends
 
   private static final com.google.protobuf.Parser<SearchRequest>
       PARSER = new com.google.protobuf.AbstractParser<SearchRequest>() {
+    @java.lang.Override
     public SearchRequest parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-        return new SearchRequest(input, extensionRegistry);
+      return new SearchRequest(input, extensionRegistry);
     }
   };
 
@@ -602,6 +648,7 @@ public  final class SearchRequest extends
     return PARSER;
   }
 
+  @java.lang.Override
   public com.flipkart.protobuf.ext.example.search.SearchRequest getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }

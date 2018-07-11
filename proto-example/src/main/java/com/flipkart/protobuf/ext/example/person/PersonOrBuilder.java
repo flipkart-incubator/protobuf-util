@@ -21,4 +21,38 @@ public interface PersonOrBuilder extends
    * <code>int32 id = 2;</code>
    */
   int getId();
+
+  /**
+   * <code>string email = 3;</code>
+   */
+  java.lang.String getEmail();
+  /**
+   * <code>string email = 3;</code>
+   */
+  com.google.protobuf.ByteString
+      getEmailBytes();
+
+  /**
+   * <code>repeated .Person.PhoneNumber phoneNumber = 4;</code>
+   */
+  java.util.List<com.flipkart.protobuf.ext.example.person.Person.PhoneNumber> 
+      getPhoneNumberList();
+  /**
+   * <code>repeated .Person.PhoneNumber phoneNumber = 4;</code>
+   */
+  com.flipkart.protobuf.ext.example.person.Person.PhoneNumber getPhoneNumber(int index);
+  /**
+   * <code>repeated .Person.PhoneNumber phoneNumber = 4;</code>
+   */
+  int getPhoneNumberCount();
+  /**
+   * <code>repeated .Person.PhoneNumber phoneNumber = 4;</code>
+   */
+  java.util.List<? extends com.flipkart.protobuf.ext.example.person.Person.PhoneNumberOrBuilder> 
+      getPhoneNumberOrBuilderList();
+  /**
+   * <code>repeated .Person.PhoneNumber phoneNumber = 4;</code>
+   */
+  com.flipkart.protobuf.ext.example.person.Person.PhoneNumberOrBuilder getPhoneNumberOrBuilder(
+      int index);
 }

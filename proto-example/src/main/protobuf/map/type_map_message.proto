@@ -1,0 +1,20 @@
+syntax = "proto3";
+option java_package = "com.flipkart.protobuf.ext.generator.test.sample";
+option java_multiple_files = true;
+message MessageWithTypeMap{
+    message stringToStringMapEntry{
+        string key=1;
+        string value=2;
+    }
+    repeated stringToStringMapEntry stringToStringMap=1;
+    message stringToEnumMapEntry{
+        string key=1;
+        enum SampleEnumType{
+            MOBILE=0;
+            HOME=1;
+            WORK=2;
+        }
+        SampleEnumType value=2;
+    }
+    repeated stringToEnumMapEntry stringToEnumMap=2;
+}

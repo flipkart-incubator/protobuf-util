@@ -1,0 +1,10 @@
+syntax = "proto3";
+option java_package = "com.flipkart.protobuf.ext.example.oneof";
+option java_multiple_files = true;
+
+message SampleMessage {
+    oneof message {
+        string message_1 = 1;
+        string message_2 = 2;
+    }
+}
