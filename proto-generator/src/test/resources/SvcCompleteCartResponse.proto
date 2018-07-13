@@ -1,0 +1,904 @@
+syntax = "proto3";
+option java_package = "cart.client.v2.endpoints.response";
+option java_multiple_files = true;
+enum CartDomainName {
+	unknown=0;
+	physical=1;
+	digital=2;
+	egv=3;
+}
+enum CartAssocType {
+	account=0;
+	account_tn=1;
+	session=2;
+	unknown=3;
+	checkout=4;
+	saveForLater=5;
+}
+enum MarketPlace {
+	FLIPKART=0;
+	GROCERY=1;
+	EMERALD=2;
+}
+enum CartItemAddedAgainst {
+	USER=0;
+	SANTA=1;
+}
+message DateTime {
+	int64 serialVersionUID=1;
+}
+message Quantity {
+	int32 value=1;
+	int32 INIT_QUANTITY=2;
+}
+message ApplicabilityInfo {
+	string type=1;
+	string value=2;
+}
+message BasedOnInfo {
+	string type=1;
+	string value=2;
+}
+enum ServiceNameEnum {
+	normalDelivery=0;
+	nextDayDelivery=1;
+	sameDayDelivery=2;
+	HAND_TO_HAND_PICKUP=3;
+	locationServiceability=4;
+	paymentPrepaidServiceability=5;
+	paymentPostPaidServiceability=6;
+	giftWrap=7;
+	noPincodeServiceability=8;
+	slot=9;
+}
+enum ServiceChargeTypeEnum {
+	SHIPPING_CHARGE=0;
+	OCTROI_CHARGE=1;
+	GIFT_WRAP_CHARGE=2;
+	PICKUP_CHARGE=3;
+}
+message serviceChargeMapEntry {
+	ServiceChargeTypeEnum key=1;
+	double value=2;
+}
+enum Type {
+	FREESHIP=0;
+	PRIORITYSHIP=1;
+}
+message Benefit {
+	Type type=1;
+}
+message Cost {
+	double amount=1;
+	repeated Benefit benefits=2;
+}
+message serviceChargesMapEntry {
+	ServiceChargeTypeEnum key=1;
+	Cost value=2;
+}
+message ServiceCharges {
+	repeated serviceChargeMapEntry serviceChargeMap=1;
+	repeated serviceChargesMapEntry serviceChargesMap=2;
+}
+enum DeliverySpeedTypeEnum {
+	EXPRESS=0;
+	REGULAR=1;
+	PREMIUM=2;
+}
+enum HolidayTypeEnum {
+	seller=0;
+	logistics=1;
+}
+message ServiceabilityHoliday {
+	DateTime holidayDate=1;
+	string reason=2;
+	HolidayTypeEnum holidayTypeEnum=3;
+}
+message DeliveryInfo {
+	DateTime dispatchDateTime=1;
+	DateTime deliveryDateTime=2;
+	DateTime prepaidDeliveryDateTime=3;
+	DateTime postpaidDeliveryDateTime=4;
+	DateTime promiseAfterDateTime=5;
+	DateTime cutoffDateTime=6;
+	bool showRange=7;
+	repeated Benefit benefits=8;
+	DateTime dispatchDate=9;
+	DateTime deliveryDate=10;
+	DateTime promiseAfterDate=11;
+	DateTime cutoffDate=12;
+	DateTime releaseDate=13;
+}
+message Optional {
+	int64 serialVersionUID=1;
+}
+message Tag {
+	string cocCode=1;
+	string routeCode=2;
+	string slotTime=3;
+}
+message DataBag {
+	int32 sla=1;
+	string shipmentMovementType=2;
+	double cost=3;
+	bool available=4;
+	string slotRefId=5;
+	string sourceRefId=6;
+	Tag tags=7;
+	string sourceEpst=8;
+	string sourceLpst=9;
+	string endTime=10;
+	string startTime=11;
+	string bookingRefId=12;
+	string naReason=13;
+	bool dplusiGuaranteed=14;
+	bool dplusiEligible=15;
+}
+message DeliverySla {
+	int32 minSla=1;
+	int32 maxSla=2;
+	int32 internalSla=3;
+	int32 sla=4;
+	DeliverySpeedTypeEnum speed=5;
+	repeated ServiceabilityHoliday serviceabilityHolidays=6;
+	DeliveryInfo deliveryInfo=7;
+	Optional selectedPickUpDetails=8;
+	DataBag dataBag=9;
+	string scPreferred=10;
+}
+message PickUpCentreInfo {
+	DateTime pickUpStartDateTime=1;
+	DateTime pickUpEndDateTime=2;
+}
+message pickUpOptionsEntry {
+	string key=1;
+	PickUpCentreInfo value=2;
+}
+message Slot {
+	DateTime fromTime=1;
+	DateTime toTime=2;
+	bool isAvailable=3;
+}
+enum PromiseType {
+	SLOTTED=0;
+	UN_SLOTTED=1;
+	FUTURE_SLOTTED=2;
+}
+message ServiceDetails {
+	ServiceNameEnum serviceNameEnum=1;
+	bool serviceable=2;
+	bool hasOutstandingPurchaseLimit=3;
+	int32 outstandingPurchaseLimit=4;
+	ServiceCharges serviceCharges=5;
+	string errorCode=6;
+	string errorMsg=7;
+	bool isDefaultPromise=8;
+	repeated string serviceabilityTags=9;
+	DeliverySla deliverySla=10;
+	repeated pickUpOptionsEntry pickUpOptions=11;
+	repeated Slot slots=12;
+	PromiseType promiseType=13;
+	bool useDefaultSlot=14;
+	int32 slotCost=15;
+	int32 maxQuantity=16;
+}
+message PostOrderService {
+	string type=1;
+	bool optional=2;
+	DateTime promiseFromDateTime=3;
+	DateTime promiseToDateTime=4;
+	string serviceProvider=5;
+	int32 serviceCost=6;
+	bool showRange=7;
+	bool isDPlusIGuaranteed=8;
+}
+message Service {
+	ApplicabilityInfo applicableOn=1;
+	repeated BasedOnInfo basedOnInfo=2;
+	ServiceDetails serviceDetails=3;
+	repeated PostOrderService postOrderServices=4;
+}
+message MetaTag {
+	string text=1;
+}
+message MetaMessage {
+	string text=1;
+}
+message ServiceabilityInfoMetaData {
+	repeated MetaTag metaTags=1;
+	repeated MetaMessage metaMessages=2;
+	bool slotsAvailable=3;
+	bool isPromised=4;
+	Optional reservationInfo=5;
+}
+message ServiceAbilityInfo {
+	repeated Service coreServices=1;
+	repeated Service addOnServices=2;
+	ServiceabilityInfoMetaData metaData=3;
+}
+message Freebie {
+	string offerId=1;
+	string listingId=2;
+	string itemRefId=3;
+}
+enum DisbursalBasedOnEnum {
+	EXCHANGE=0;
+	OFFER=1;
+}
+enum DisbursalApplicableOnEnum {
+	BASKET=0;
+	ITEM=1;
+}
+enum DisbursalGiveAwayTypeEnum {
+	DISCOUNT=0;
+	FREEBIE=1;
+}
+enum DisbursalAdjustmentNameEnum {
+	PROMOTIONAL_DISCOUNT=0;
+	EXCHANGE_DISCOUNT=1;
+	FREEBIE_DISCOUNT=2;
+}
+enum DisbursalTypeEnum {
+	CHARGE=0;
+	DISCOUNT=1;
+	FREEBIE=2;
+}
+message Amount {
+	double value=1;
+}
+enum DisbursalAdjustmentGranularityEnum {
+	ITEM_SELLING_PRICE=0;
+	ITEM_SERVICE_CHARGE=1;
+	BASKET_CONTENTS=2;
+	BASKET_NET_PRICE=3;
+	BASKET_SERVICE_CHARGE=4;
+}
+enum DisbursalCalculationTypeEnum {
+	PERCENTAGE=0;
+	FIXED=1;
+	BASKET_ADDITION=2;
+}
+message Object {
+}
+message adjustmentMetadataEntry {
+	string key=1;
+	Object value=2;
+}
+message DisbursalAdjustmentMetaData {
+	repeated adjustmentMetadataEntry adjustmentMetadata=1;
+}
+enum DisbursalChargeNameEnum {
+	PICKUP_CHARGE=0;
+}
+message DisbursalCharges {
+	DisbursalChargeNameEnum chargeType=1;
+	int32 charge=2;
+}
+message DisbursalFreebieDetails {
+	string listingId=1;
+	string summary=2;
+	int32 quantity=3;
+}
+message DisbursalNetAdjustmentDetails {
+	DisbursalAdjustmentNameEnum adjustmentName=1;
+	DisbursalTypeEnum disbursalType=2;
+	Amount disbursalAmount=3;
+	DisbursalAdjustmentGranularityEnum adjustmentGranularityLevel=4;
+	DisbursalCalculationTypeEnum disbursalCalculationType=5;
+	DisbursalAdjustmentMetaData disbursalAdjustmentMetaData=6;
+	repeated DisbursalCharges chargesApplicable=7;
+	repeated DisbursalFreebieDetails freebieApplicable=8;
+}
+message offerMetaDataEnumObjectMapEntry {
+	string key=1;
+	Object value=2;
+}
+enum OfferPaymentTriggerEnum {
+	ANY=0;
+	WALLET=1;
+	BANK=2;
+	NBFC=3;
+	OTHER=4;
+}
+enum DisbursalApplicationTypeEnum {
+	INSTANT=0;
+	DEFERRED=1;
+}
+message DisbursalApplicationMetaData {
+	DisbursalApplicationTypeEnum disbursalApplicationTypeEnum=1;
+	int64 deferredDuration=2;
+}
+enum GiveAwayType {
+	freebie=0;
+	discount=1;
+}
+enum BasedOn {
+	exchange=0;
+	none=1;
+	pbo=2;
+	bank=3;
+	wallet=4;
+	nbfc=5;
+}
+enum ApplicableOnType {
+	basket=0;
+	product=1;
+}
+enum OfferAdjustmentType {
+	PROMOTION_DISCOUNT=0;
+	FREEBIE_DISCOUNT=1;
+	EXCHANGE_DISCOUNT=2;
+	DEFERRED_DISCOUNT=3;
+	EMI_DISCOUNT=4;
+}
+message DisbursalOfferMetaData {
+	repeated offerMetaDataEnumObjectMapEntry offerMetaDataEnumObjectMap=1;
+	string pzOfferId=2;
+	string offerLabel=3;
+	OfferPaymentTriggerEnum paymentTriggerEnum=4;
+	DisbursalApplicationMetaData disbursalApplicationMetaData=5;
+	string promotionVersion=6;
+	repeated MarketPlace marketPlace=7;
+	GiveAwayType giveAwayType=8;
+	BasedOn basedOn=9;
+	ApplicableOnType applicableOnType=10;
+	OfferAdjustmentType adjustmentType=11;
+	string sourceId=12;
+}
+message MessageText {
+	string small=1;
+	string medium=2;
+	string large=3;
+}
+message MessageLink {
+	string displayText=1;
+	string link=2;
+	bool required=3;
+	string trackingId=4;
+}
+enum MessageType {
+	D2R=0;
+	CONDITIONAL=1;
+}
+message OfferMessage {
+	MessageText text=1;
+	MessageLink tnc=2;
+	MessageLink cta=3;
+	MessageType messageType=4;
+}
+message DisbursalOffer {
+	string offerId=1;
+	DisbursalBasedOnEnum basedOn=2;
+	DisbursalApplicableOnEnum applicableOn=3;
+	DisbursalGiveAwayTypeEnum giveAwayType=4;
+	bool isConditional=5;
+	DisbursalNetAdjustmentDetails disbursalNetAdjustmentDetails=6;
+	DisbursalOfferMetaData offerMetaData=7;
+	double discountAmount=8;
+	OfferMessage offerMessage=9;
+	string message=10;
+}
+enum DisbursalWarningEnum {
+	FREEBIE_NOT_SERVICABLE=0;
+	FREEBIE_NOT_BUYABLE=1;
+	PICKUP_NOT_AVAILABLE=2;
+	ANOMALY_IN_OFFERS=3;
+	INVALID_PRICING_INFO=4;
+	SINGLE_PRODUCT_CHECKOUT_WARNING=5;
+	UNKNOWN_WARNING=6;
+	NCE_HURDLE_BREACHED_WARNING=7;
+}
+message DisbursalWarningMessage {
+	string warningMessage=1;
+	string affectedOfferId=2;
+	DisbursalWarningEnum disbursalWarningEnum=3;
+	repeated string externalIds=4;
+}
+message otherInfoEntry {
+	string key=1;
+	Object value=2;
+}
+message DisbursalItemResponseMetaData {
+	repeated string cancellationIds=1;
+	string shipGroupId=2;
+	string cancellationId=3;
+	string userAction=4;
+	string basketAction=5;
+	string basketEntryAction=6;
+	int32 pickUpCharge=7;
+	string returnGroupId=8;
+	repeated string returnPolicyId=9;
+	int32 effectiveDiscount=10;
+	repeated otherInfoEntry otherInfo=11;
+	bool $assertionsDisabled=12;
+}
+message DisbursalItemResponse {
+	repeated Freebie freebieList=1;
+	repeated DisbursalOffer offers=2;
+	repeated DisbursalWarningMessage warningMessages=3;
+	DisbursalItemResponseMetaData disbursalItemMetaData=4;
+	repeated OfferMessage itemOfferMessages=5;
+	repeated string freebieItemRefIds=6;
+}
+message productIdentifierEntry {
+	string key=1;
+	string value=2;
+}
+message ExchangeContextIdentifier {
+	string id=1;
+	string value=2;
+}
+message productIdentifierNewEntry {
+	string key=1;
+	ExchangeContextIdentifier value=2;
+}
+message ExchangeServiceabilityStatus {
+	bool current=1;
+	bool previous=2;
+}
+message userContextEntry {
+	string key=1;
+	string value=2;
+}
+enum ExchangeFreeType {
+	IMEI Number=0;
+	Serial Number=1;
+}
+message ExchangeProductIdentifier {
+	ExchangeFreeType exchangeFreeType=1;
+	string value=2;
+}
+message OffersExchangeContext {
+	string promotionId=1;
+	repeated productIdentifierEntry productIdentifier=2;
+	repeated productIdentifierNewEntry productIdentifierNew=3;
+	string dummyFSN=4;
+	int32 notionalValue=5;
+	repeated string requiredServiceabilityCheck=6;
+	string selectedId=7;
+	string uniqueId=8;
+	string uniqueIdKey=9;
+	ExchangeServiceabilityStatus serviceabilityStatus=10;
+	int32 pickupCharge=11;
+	repeated userContextEntry userContext=12;
+	ExchangeProductIdentifier exchangeProductIdentifier=13;
+	string contextId=14;
+	bool buyBackOffer=15;
+}
+message CartFulfilmentInfo {
+	string recipientName=1;
+	string senderName=2;
+	string message=3;
+	string recipientEmailId=4;
+}
+enum ServiceType {
+	TIER=0;
+	GIFTWRAP=1;
+	PICKUP_CENTRE=2;
+}
+message Giftwrap {
+	string to=1;
+	string from=2;
+	string message=3;
+	bool isChecked=4;
+}
+enum UpdatedBy {
+	USER=0;
+	SYSTEM=1;
+}
+message SelectedServiceInfo {
+	ServiceType type=1;
+	string value=2;
+	Giftwrap gwInfo=3;
+	UpdatedBy updatedBy=4;
+	Slot slot=5;
+}
+message servicesSelectedEntry {
+	ServiceType key=1;
+	SelectedServiceInfo value=2;
+}
+message MinimalItemInfo {
+	string title=1;
+	string url=2;
+	string imageUrl=3;
+	string vertical=4;
+}
+enum Value {
+	ERR_CO_000=0;
+	ERR_CO_111=1;
+	ERR_CO_001=2;
+	ERR_CO_002=3;
+	ERR_CO_003=4;
+	ERR_CO_004=5;
+	ERR_CO_005=6;
+	ERR_CO_006=7;
+	ERR_CO_007=8;
+	ERR_CO_008=9;
+	ERR_CO_009=10;
+	ERR_CO_010=11;
+	ERR_CO_011=12;
+	ERR_CO_012=13;
+	ERR_CO_013=14;
+	ERR_CO_014=15;
+	ERR_CO_015=16;
+	ERR_CO_016=17;
+	ERR_CO_017=18;
+	ERR_CO_018=19;
+	ERR_CO_019=20;
+	ERR_CO_020=21;
+	ERR_CO_021=22;
+	ERR_CO_022=23;
+	ERR_CO_023=24;
+	ERR_CO_024=25;
+	ERR_CO_025=26;
+	ERR_CO_026=27;
+	ERR_CO_027=28;
+	ERR_CO_028=29;
+	ERR_CO_029=30;
+	ERR_CO_031=31;
+	ERR_CO_030=32;
+	ERR_CO_032=33;
+	ERR_CO_033=34;
+	ERR_CO_034=35;
+	ERR_CO_035=36;
+	ERR_CO_036=37;
+	ERR_CO_037=38;
+	ERR_CO_038=39;
+	ERR_CO_039=40;
+	ERR_CO_040=41;
+	ERR_CO_041=42;
+	ERR_CO_042=43;
+	ERR_CO_043=44;
+	ERR_CO_044=45;
+	ERR_CO_045=46;
+	ERR_CO_046=47;
+	ERR_CO_047=48;
+	ERR_CO_048=49;
+	ERR_CO_049=50;
+	ERR_CO_050=51;
+	ERR_CO_051=52;
+	ERR_CO_052=53;
+	ERR_CO_053=54;
+	ERR_CO_054=55;
+	ERR_CO_056=56;
+	ERR_CO_057=57;
+	ERR_CO_058=58;
+	ERR_CO_059=59;
+	ERR_CO_060=60;
+	ERR_CO_061=61;
+	ERR_CO_062=62;
+	ERR_CO_063=63;
+	ERR_CO_064=64;
+	ERR_CO_065=65;
+	ERR_CO_066=66;
+	ERR_CO_067=67;
+	ERR_CO_068=68;
+	ERR_CO_069=69;
+	ERR_CO_070=70;
+	ERR_CO_071=71;
+	ERR_CO_072=72;
+	ERR_CO_073=73;
+	ERR_CO_074=74;
+	ERR_CO_075=75;
+	ERR_CO_076=76;
+	ERR_CO_077=77;
+	ERR_CO_078=78;
+	ERR_CO_079=79;
+	ERR_CO_080=80;
+	ERR_CO_081=81;
+	ERR_CO_082=82;
+	ERR_CO_083=83;
+	ERR_CO_084=84;
+	ERR_CO_085=85;
+	ERR_CO_086=86;
+	ERR_CO_087=87;
+	ERR_CO_088=88;
+	ERR_CO_089=89;
+	ERR_CO_090=90;
+	ERR_CO_091=91;
+	ERR_CO_092=92;
+	ERR_CO_093=93;
+}
+enum ItemState {
+	COLD=0;
+	BUYABLE=1;
+	SERVICE_FAILURE=2;
+	INTERMEDIATE=3;
+}
+message StatusResponse {
+	Value statusCode=1;
+	ItemState itemState=2;
+	string message=3;
+	bool hasChanged=4;
+}
+enum AdjustmentType {
+	PROMOTION_DISCOUNT=0;
+	EXCHANGE_DISCOUNT=1;
+	PICKUP_CHARGE=2;
+	OCTROI_CHARGE=3;
+	SHIPPING_CHARGE=4;
+	CASHBACK=5;
+	SOURCING_FEE=6;
+	GIFTWRAP=7;
+	DISCOUNTED_SHIPPING=8;
+}
+enum AdjustmentImpact {
+	POSITIVE=0;
+	NEGATIVE=1;
+}
+enum AdjustmentFormat {
+	PERCENTAGE=0;
+	FIXED=1;
+}
+enum AdjustmentSourceType {
+	OFFERS=0;
+	SERVICEABILITY=1;
+	PRODUCT_INFO=2;
+}
+message Adjustment {
+	AdjustmentType adjustmentType=1;
+	AdjustmentImpact adjustmentImpact=2;
+	AdjustmentFormat adjustmentFormat=3;
+	Amount netApplicableAmount=4;
+	Amount unitApplicableAmount=5;
+	string message=6;
+	AdjustmentSourceType sourceType=7;
+	string sourceRef=8;
+	string offerId=9;
+}
+message CartItemAdjustment {
+	Amount unitSellingPrice=1;
+	Amount itemSellingPrice=2;
+	int32 quantity=3;
+	repeated Adjustment itemAdjustmentList=4;
+	repeated string groupAdjustmentIds=5;
+}
+enum DependentService {
+	Pricing=0;
+}
+message dependentSvcVersionEntry {
+	DependentService key=1;
+	string value=2;
+}
+enum ProductInfoAttribute {
+	SellerId=0;
+}
+message productInfoAttributesEntry {
+	ProductInfoAttribute key=1;
+	string value=2;
+}
+enum AttachRestrictionReason {
+	NOT_APPLICABLE=0;
+	VAS=1;
+	SINGLE_PRODUCT_OFFER=2;
+}
+message AttachMetadata {
+	bool showAttach=1;
+	AttachRestrictionReason attachRestrictionReason=2;
+}
+message CartItemMetaData {
+	Quantity quantity=1;
+	ServiceAbilityInfo serviceAbilityInfo=2;
+	DisbursalItemResponse disbursalItemResponse=3;
+	string freebieSummary=4;
+	OffersExchangeContext exchangeContext=5;
+	CartFulfilmentInfo fulfilmentInfo=6;
+	repeated servicesSelectedEntry servicesSelected=7;
+	MinimalItemInfo minimalItemInfo=8;
+	StatusResponse statusResponse=9;
+	CartItemAdjustment itemAdjustment=10;
+	repeated dependentSvcVersionEntry dependentSvcVersion=11;
+	repeated productInfoAttributesEntry productInfoAttributes=12;
+	Optional reservationInfo=13;
+	AttachMetadata attachMetadata=14;
+	string serviceabilityGroupId=15;
+}
+message CartItemInfo {
+	string id=1;
+	string cartId=2;
+	CartItemAddedAgainst itemAddedAgainst=3;
+	string itemSource=4;
+	string itemId=5;
+	string isDeleted=6;
+	DateTime addedDateTime=7;
+	CartItemMetaData cartItemMetaData=8;
+	string parentContext=9;
+	string parentCartItemId=10;
+	MarketPlace marketPlaceId=11;
+}
+enum ListingTier {
+	NONE=0;
+	FASSURED=1;
+}
+message D2Rvalue {
+	int32 threshold=1;
+	int32 distance=2;
+}
+message shippingD2REntry {
+	ListingTier key=1;
+	D2Rvalue value=2;
+}
+message MarketPlaceMetaData {
+	Optional serviceAbilityInfo=1;
+	Optional servicesSelected=2;
+	Optional minimumBuyabilityInfo=3;
+	bool isMarketPlaceServiceable=4;
+	Optional marketPlaceAdjustments=5;
+	Optional offerD2RMessage=6;
+	Optional d2RMessage=7;
+	repeated shippingD2REntry shippingD2R=8;
+}
+message MarketPlaceInfo {
+	MarketPlace marketPlace=1;
+	repeated CartItemInfo cartItems=2;
+	MarketPlaceMetaData marketPlaceMetaData=3;
+}
+enum FulfillmentServiceType {
+	shippingAddressID=0;
+}
+message FulfillmentData {
+	FulfillmentServiceType fulfillmentServiceType=1;
+	string fulfillmentId=2;
+}
+message UserDemographics {
+	string shippingPincode=1;
+	string ipAddress=2;
+	string userAgent=3;
+	FulfillmentData fulfillmentData=4;
+}
+message UserInfo {
+	string userRefId=1;
+	string userAssocType=2;
+}
+message SourceCartInfo {
+	string id=1;
+}
+enum D2RSource {
+	Unknown=0;
+	PromiseInfo=1;
+	Santa=2;
+}
+message ProductContext {
+	string productId=1;
+	string listingId=2;
+	string sellerId=3;
+	string productTitle=4;
+}
+message D2RItemResponse {
+	D2RSource source=1;
+	ProductContext productContext=2;
+	string caseType=3;
+	string displayText=4;
+	string promotionId=5;
+	string promotionPageURL=6;
+}
+message OffersD2r {
+	repeated D2RItemResponse d2rItemResponseList=1;
+}
+message metadataEntry {
+	string key=1;
+	string value=2;
+}
+message DisbursalPBOOfferDetail {
+	string offerId=1;
+	repeated metadataEntry metadata=2;
+	int32 offerItemAmount=3;
+}
+message PZDataBag {
+	repeated DisbursalPBOOfferDetail pboOfferDetails=1;
+}
+message GroupAdjustment {
+	repeated Adjustment adjustmentList=1;
+}
+message groupAdjustmentsMapEntry {
+	string key=1;
+	GroupAdjustment value=2;
+}
+enum PolicyAppliedEnum {
+	SHIP_TOGETHER=0;
+	HAND_IN_HAND=1;
+}
+message PolicyApplied {
+	string policyId=1;
+	PolicyAppliedEnum policyAppliedEnum=2;
+	bool buyable=3;
+}
+message CartMetaData {
+	UserDemographics userDemographics=1;
+	UserInfo userInfo=2;
+	bool isRegisteredFFCustomer=3;
+	SourceCartInfo sourceCartInfo=4;
+	OffersD2r offersD2r=5;
+	PZDataBag pzDataBag=6;
+	bool offersCritical=7;
+	Optional serviceAbilityInfo=8;
+	Optional servicesSelected=9;
+	repeated Adjustment cartLevelAdjustments=10;
+	repeated groupAdjustmentsMapEntry groupAdjustmentsMap=11;
+	repeated PolicyApplied policyAppliedList=12;
+	string shippingPinCode=13;
+}
+message CartInfo {
+	string id=1;
+	CartDomainName domain=2;
+	CartAssocType assocType=3;
+	string assocId=4;
+	int64 version=5;
+	repeated MarketPlaceInfo marketPlaceInfoList=6;
+	CartMetaData cartMetaData=7;
+}
+enum CMSServiceTypeEnum {
+	forwardServices=0;
+	reverseServices=1;
+	reverse_services=2;
+	forward_services=3;
+}
+message checkoutInstallationEntry {
+	CMSServiceTypeEnum key=1;
+	repeated Object value=2;
+}
+message ShippingRateValues {
+	double amount=1;
+	string currency=2;
+}
+message priceValuesEntry {
+	string key=1;
+	ShippingRateValues value=2;
+}
+message OffersDescription {
+	string value=1;
+	string qualifier=2;
+}
+message ListingInfoResponse {
+	string skuId=1;
+	double sellingPrice=2;
+	string serviceProfile=3;
+	repeated string returnPolicies=4;
+	string sellerId=5;
+	string sellerDisplayName=6;
+	string pincode=7;
+	string listingState=8;
+	repeated priceValuesEntry priceValues=9;
+	int32 shipping=10;
+	bool isAvailable=11;
+	bool inventoryStatus=12;
+	int64 inventoryCount=13;
+	string offers=14;
+	string releaseDateType=15;
+	string preorderReleaseDate=16;
+	repeated OffersDescription offersDescription=17;
+	string international=18;
+	string listingTier=19;
+	string hsn=20;
+}
+message ProductInfoItemLevelResponse {
+	string vertical=1;
+	string categoryNodeId=2;
+	repeated string nodeIds=3;
+	string productId=4;
+	string preferredListingId=5;
+	string title=6;
+	string minTitle=7;
+	double price=8;
+	bool isLarge=9;
+	bool dangerousGood=10;
+	repeated checkoutInstallationEntry checkoutInstallation=11;
+	string url=12;
+	string imageUrl=13;
+	repeated string salesPackage=14;
+	repeated string hiddenSalesPackage=15;
+	string productType=16;
+	ListingInfoResponse listingInfoResponse=17;
+}
+message itemLevelResponsesEntry {
+	string key=1;
+	ProductInfoItemLevelResponse value=2;
+}
+message ProductInfoResponse {
+	repeated itemLevelResponsesEntry itemLevelResponses=1;
+}
+message SvcCompleteCartResponse {
+	CartInfo cartInfo=1;
+	ProductInfoResponse productInfoResponse=2;
+	Optional actionDetails=3;
+}

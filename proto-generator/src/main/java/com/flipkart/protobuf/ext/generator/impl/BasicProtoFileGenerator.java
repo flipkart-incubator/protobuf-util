@@ -84,7 +84,7 @@ public class BasicProtoFileGenerator implements IProtoFileGenerator {
 			currentFieldNumber++;
 		}
 
-		if (!tclass.getSuperclass().getTypeName().equals("java.lang.Object")) {
+		if (!tclass.getTypeName().equals("java.lang.Object") && tclass.getSuperclass().getTypeName().equals("java.lang.Object")) {
 			StringBuilder stringBuilder = handleClass(tclass.getSuperclass(), queue, typeMap, tabIndent, currentFieldNumber);
 			sb.append(stringBuilder);
 		}

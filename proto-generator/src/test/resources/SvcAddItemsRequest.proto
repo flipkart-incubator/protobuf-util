@@ -1,0 +1,91 @@
+syntax = "proto3";
+option java_package = "cart.client.endpoints.request";
+option java_multiple_files = true;
+enum CartItemAddedAgainst {
+	USER=0;
+	SANTA=1;
+}
+message productIdentifierEntry {
+	string key=1;
+	string value=2;
+}
+message ExchangeContextIdentifier {
+	string id=1;
+	string value=2;
+}
+message productIdentifierNewEntry {
+	string key=1;
+	ExchangeContextIdentifier value=2;
+}
+message ExchangeServiceabilityStatus {
+	bool current=1;
+	bool previous=2;
+}
+message userContextEntry {
+	string key=1;
+	string value=2;
+}
+enum ExchangeFreeType {
+	IMEI Number=0;
+	Serial Number=1;
+}
+message ExchangeProductIdentifier {
+	ExchangeFreeType exchangeFreeType=1;
+	string value=2;
+}
+message OffersExchangeContext {
+	string promotionId=1;
+	repeated productIdentifierEntry productIdentifier=2;
+	repeated productIdentifierNewEntry productIdentifierNew=3;
+	string dummyFSN=4;
+	int32 notionalValue=5;
+	repeated string requiredServiceabilityCheck=6;
+	string selectedId=7;
+	string uniqueId=8;
+	string uniqueIdKey=9;
+	ExchangeServiceabilityStatus serviceabilityStatus=10;
+	int32 pickupCharge=11;
+	repeated userContextEntry userContext=12;
+	ExchangeProductIdentifier exchangeProductIdentifier=13;
+	string contextId=14;
+	bool buyBackOffer=15;
+}
+message CartFulfilmentInfo {
+	string recipientName=1;
+	string senderName=2;
+	string message=3;
+	string recipientEmailId=4;
+}
+message Quantity {
+	int32 value=1;
+	int32 INIT_QUANTITY=2;
+}
+enum MarketPlace {
+	FLIPKART=0;
+	GROCERY=1;
+	EMERALD=2;
+}
+enum ActionType {
+	NOT_APPLICABLE=0;
+	WAITLIST=1;
+	ALLOTTED=2;
+	RESERVED=3;
+}
+message Optional {
+	int64 serialVersionUID=1;
+}
+message SvcCartItemRequest {
+	string itemSource=1;
+	string itemId=2;
+	CartItemAddedAgainst itemAddedBy=3;
+	OffersExchangeContext exchangeContext=4;
+	CartFulfilmentInfo cartFulfilmentInfo=5;
+	Quantity quantity=6;
+	string parentContext=7;
+	MarketPlace marketPlaceId=8;
+	ActionType actionType=9;
+	Optional cartItemMetaData=10;
+}
+message SvcAddItemsRequest {
+	repeated SvcCartItemRequest cartItems=1;
+}
