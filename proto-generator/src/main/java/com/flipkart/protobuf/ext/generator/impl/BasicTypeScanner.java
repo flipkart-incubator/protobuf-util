@@ -7,29 +7,29 @@ import java.lang.reflect.ParameterizedType;
 import java.util.HashMap;
 
 public class BasicTypeScanner implements ITypeScanner {
-	public HashMap<Class<?>, String> classStringMap = new HashMap<Class<?>, String>() {{
-		put(double.class, "double");
-		put(float.class, "float");
-		put(int.class, "int32");
-		put(long.class, "int64");
-		put(boolean.class, "bool");
-		put(Double.class, "double");
-		put(Float.class, "float");
-		put(Integer.class, "int32");
-		put(Long.class, "int64");
-		put(Boolean.class, "bool");
-		put(String.class, "string");
+	public HashMap<String, String> classStringMap = new HashMap<String, String>() {{
+		put(double.class.getCanonicalName(), "double");
+		put(float.class.getCanonicalName(), "float");
+		put(int.class.getCanonicalName(), "int32");
+		put(long.class.getCanonicalName(), "int64");
+		put(boolean.class.getCanonicalName(), "bool");
+		put(Double.class.getCanonicalName(), "double");
+		put(Float.class.getCanonicalName(), "float");
+		put(Integer.class.getCanonicalName(), "int32");
+		put(Long.class.getCanonicalName(), "int64");
+		put(Boolean.class.getCanonicalName(), "bool");
+		put(String.class.getCanonicalName(), "string");
 	}};
 
 
 	@Override
-	public HashMap<Class<?>, String> getDefaults() {
+	public HashMap<String, String> getDefaults() {
 		return classStringMap;
 	}
 
 	@Override
-	public HashMap<Class<?>, String> getTypeMap(Class tClass) {
-		HashMap<Class<?>, String> typeMap = (HashMap<Class<?>, String>) classStringMap.clone();
+	public HashMap<String, String> getTypeMap(Class tClass) {
+		HashMap<String, String> typeMap = (HashMap<String, String>) classStringMap.clone();
 		//recursiveTypeScan(tClass, typeMap);
 		return typeMap;
 	}
@@ -38,9 +38,9 @@ public class BasicTypeScanner implements ITypeScanner {
 		if (!typeMap.containsKey(tClass)) {
 			typeMap.put(tClass, tClass.getSimpleName());
 
-			if(tClass.isEnum()){
+			if (tClass.isEnum()) {
 
-			}else {
+			} else {
 				Field[] fields = tClass.getDeclaredFields();
 				for (int i = 0; i < fields.length; i++) {
 					Class<?> fieldType = fields[i].getType();
@@ -53,7 +53,7 @@ public class BasicTypeScanner implements ITypeScanner {
 					}
 				}
 
-				if(tClass.getSuperclass() != Object.class){
+				if (tClass.getSuperclass() != Object.class) {
 					recursiveTypeScan(tClass.getSuperclass(), typeMap);
 				}
 			}

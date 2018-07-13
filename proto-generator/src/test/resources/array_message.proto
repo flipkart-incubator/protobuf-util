@@ -1,7 +1,7 @@
 syntax = "proto3";
 option java_package = "com.flipkart.protobuf.ext.generator.test.sample";
 option java_multiple_files = true;
-message MessageWithArray{
+message MessageWithArray {
     repeated double double1=1;
     repeated float float1=2;
     repeated int32 int1=3;

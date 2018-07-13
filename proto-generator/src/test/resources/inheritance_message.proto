@@ -1,7 +1,16 @@
 syntax = "proto3";
 option java_package = "com.flipkart.protobuf.ext.generator.test.sample";
 option java_multiple_files = true;
-message BaseClassImpl{
+message stringToIntMapEntry {
+    string key=1;
+    int32 value=2;
+}
+enum SampleEnumType {
+    MOBILE=0;
+    HOME=1;
+    WORK=2;
+}
+message BaseClassImpl {
     string impl=1;
     string baseAttribute=2;
     double double1=3;
@@ -11,15 +20,6 @@ message BaseClassImpl{
     bool boolean1=7;
     repeated string string1=8;
     repeated int32 integerList=9;
-    message stringToIntMapEntry{
-        string key=1;
-        int32 value=2;
-    }
     repeated stringToIntMapEntry stringToIntMap=10;
-    enum SampleEnumType{
-        MOBILE=0;
-        HOME=1;
-        WORK=2;
-    }
     SampleEnumType enumType=11;
 }

@@ -12,10 +12,10 @@ public class TypeScannerTest {
 	@Test
 	public void testScanningPerson() {
 		ITypeScanner typeScanner = new BasicTypeScanner();
-		HashMap<Class<?>, String> typeMap = typeScanner.getTypeMap(SampleMessage.class);
+		HashMap<String, String> typeMap = typeScanner.getTypeMap(SampleMessage.class);
 		typeMap.forEach((x, y) -> {
 			if (!typeScanner.getDefaults().containsKey(x)) {
-				System.out.println(x.getTypeName() + " " + y);
+				System.out.println(x + " " + y);
 			}
 		});
 	}
@@ -23,10 +23,10 @@ public class TypeScannerTest {
 	@Test
 	public void testScanningPaymentBase() {
 		ITypeScanner typeScanner = new BasicTypeScanner();
-		HashMap<Class<?>, String> typeMap = typeScanner.getTypeMap(BaseClassImpl.class);
+		HashMap<String, String> typeMap = typeScanner.getTypeMap(BaseClassImpl.class);
 		typeMap.forEach((x, y) -> {
 			if (!typeScanner.getDefaults().containsKey(x)) {
-				System.out.println(x.getTypeName() + " " + y);
+				System.out.println(x + " " + y);
 			}
 		});
 	}

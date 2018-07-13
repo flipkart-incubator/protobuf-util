@@ -2,11 +2,13 @@ package com.flipkart.protobuf.ext.generator.impl;
 
 import com.flipkart.protobuf.ext.generator.IProtoFileGenerator;
 import com.flipkart.protobuf.ext.generator.ITypeScanner;
+import sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.*;
+import java.util.concurrent.ArrayBlockingQueue;
 
 public class BasicProtoFileGenerator implements IProtoFileGenerator {
 	private static String TAB = "\t";
@@ -35,8 +37,11 @@ public class BasicProtoFileGenerator implements IProtoFileGenerator {
 		String packageName = tclass.getPackage().getName();
 		builder.append("option java_package = ").append("\"").append(packageName).append("\";").append(NEW_LINE);
 		builder.append("option java_multiple_files = true;").append(NEW_LINE);
-
-		getProtobufEquivalent(tclass, builder, typeScanner.getTypeMap(tclass), 0);
+		Queue<StringBuilder> messages = new ArrayBlockingQueue<StringBuilder>(10000);
+		getProtobufEquivalent(tclass, messages, typeScanner.getTypeMap(tclass), 0);
+		for (StringBuilder stringBuilder : messages) {
+			builder.append(stringBuilder);
+		}
 		return builder.toString();
 	}
 
@@ -47,91 +52,96 @@ public class BasicProtoFileGenerator implements IProtoFileGenerator {
 		return MESSAGE;
 	}
 
-	private void getProtobufEquivalent(Class tclass, StringBuilder sb, HashMap<Class<?>, String> typeMap, int tabIndent) {
-		startMessage(tclass, sb, tabIndent);
-		typeMap.put(tclass, tclass.getSimpleName());
+	private void getProtobufEquivalent(Class tclass, Queue<StringBuilder> queue, HashMap<String, String> typeMap, int tabIndent) {
+		StringBuilder sb = new StringBuilder();
+		startMessage(getPrefix(tclass), tclass.getSimpleName(), sb, tabIndent);
+		typeMap.put(tclass.getCanonicalName(), tclass.getSimpleName());
 		tabIndent++;
 		if (tclass.isEnum()) {
-			handleEnum(tclass, sb, tabIndent);
+			sb.append(handleEnum(tclass, tabIndent));
 		} else {
-			handleClass(tclass, sb, typeMap, tabIndent, 1);
+			sb.append(handleClass(tclass, queue, typeMap, tabIndent, 1));
 		}
 		tabIndent--;
 		endBrace(sb, tabIndent);
+		queue.add(sb);
 	}
 
-	private void startMessage(Class tclass, StringBuilder sb, int tabIndent) {
-		sb.append(getTabs(tabIndent)).append(getPrefix(tclass)).append(SPACE).append(tclass.getSimpleName()).append(OPEN_BRACE).append(NEW_LINE);
+	private void startMessage(String prefix, String name, StringBuilder sb, int tabIndent) {
+		sb.append(getTabs(tabIndent)).append(prefix).append(SPACE).append(name).append(SPACE).append(OPEN_BRACE).append(NEW_LINE);
 	}
 
 	private void endBrace(StringBuilder sb, int tabIndent) {
 		sb.append(getTabs(tabIndent)).append(CLOSE_BRACE).append(NEW_LINE);
 	}
 
-	private void handleClass(Class tclass, StringBuilder sb, HashMap<Class<?>, String> typeMap, int tabIndent, int fieldNumber) {
+	private StringBuilder handleClass(Class tclass, Queue<StringBuilder> queue, HashMap<String, String> typeMap, int tabIndent, int fieldNumber) {
+		StringBuilder sb = new StringBuilder();
 		Field[] fields = tclass.getDeclaredFields();
 		int currentFieldNumber = fieldNumber;
 		for (Field field : fields) {
-			fieldGenerator(sb, typeMap, tabIndent, field, currentFieldNumber);
+			fieldGenerator(sb, queue, typeMap, tabIndent, field.getGenericType(), field.getName(), currentFieldNumber);
 			currentFieldNumber++;
 		}
 
 		if (!tclass.getSuperclass().getTypeName().equals("java.lang.Object")) {
-			handleClass(tclass.getSuperclass(), sb, typeMap, tabIndent, currentFieldNumber);
+			StringBuilder stringBuilder = handleClass(tclass.getSuperclass(), queue, typeMap, tabIndent, currentFieldNumber);
+			sb.append(stringBuilder);
 		}
+		return sb;
 	}
 
-	private void handleEnum(Class tclass, StringBuilder sb, int tabIndent) {
+	private StringBuilder handleEnum(Class tclass, int tabIndent) {
+		StringBuilder sb = new StringBuilder();
+
 		Object[] enumConstants = tclass.getEnumConstants();
 		for (int i = 0; i < enumConstants.length; i++) {
 			sb.append(getTabs(tabIndent)).append(enumConstants[i]).append(EQUAL).append(i).append(SEMI_COLON).append(NEW_LINE);
 		}
+		return sb;
 	}
 
-	private void fieldGenerator(StringBuilder sb, HashMap<Class<?>, String> typeMap, int tabIndent, Field field, int fieldNumber) {
-		Class fieldType = field.getType();
+	private void fieldGenerator(StringBuilder sb, Queue<StringBuilder> queue, HashMap<String, String> typeMap, int tabIndent, Type genericType, String label, int fieldNumber) {
+		Class tClass;
+		if (genericType instanceof ParameterizedTypeImpl) {
+			tClass = ((ParameterizedTypeImpl) genericType).getRawType();
+		} else {
+			tClass = (Class) genericType;
+		}
 		Class innerFieldtype = null;
-		boolean repeated = isRepeatedFieldType(fieldType);
+		String entryName = null;
+		boolean repeated = isRepeatedFieldType(tClass);
 		if (repeated) {
-			if (fieldType.isArray()) {
-				innerFieldtype = fieldType.getComponentType();
-			} else if (Collection.class.isAssignableFrom(fieldType)) {
-				Type t = field.getGenericType();
-				if (t instanceof ParameterizedType) {
-					ParameterizedType tt = (ParameterizedType) t;
+			if (tClass.isArray()) {
+				innerFieldtype = tClass.getComponentType();
+			} else if (Collection.class.isAssignableFrom(tClass)) {
+				if (genericType instanceof ParameterizedType) {
+					ParameterizedType tt = (ParameterizedType) genericType;
 					innerFieldtype = (Class) tt.getActualTypeArguments()[0];
 				}
-			} else if (Map.class.isAssignableFrom(fieldType)) {
-				String entryName = field.getName() + MAP_TYPE_SUFFIX;
-
-				Type t = field.getGenericType();
-
-				if (t instanceof ParameterizedType) {
-					ParameterizedType tt = (ParameterizedType) t;
-					Class innerType1 = (Class) tt.getActualTypeArguments()[0];
-					Class innerType2 = (Class) tt.getActualTypeArguments()[1];
-					buildEntryType(entryName, sb, innerType1, innerType2, typeMap, tabIndent);
+			} else if (Map.class.isAssignableFrom(tClass)) {
+				entryName = label + MAP_TYPE_SUFFIX;
+				if (genericType instanceof ParameterizedType) {
+					ParameterizedType tt = (ParameterizedType) genericType;
+					buildEntryType(entryName, queue, tt, typeMap, 0);
 				}
 			}
 		}
-		Class effectiveType = getEffectiveType(fieldType, innerFieldtype);
-		if (typeMap.containsKey(effectiveType)) {
-			addFieldLine(sb, typeMap, tabIndent, field, fieldNumber, repeated, effectiveType);
-			if (Map.class.isAssignableFrom(effectiveType)) {
-				typeMap.remove(effectiveType);
-				//hack: Removing Map.class from typeMap as every time it will be new one
-			}
-		} else {
-			getProtobufEquivalent(effectiveType, sb, typeMap, tabIndent);
-			addFieldLine(sb, typeMap, tabIndent, field, fieldNumber, repeated, effectiveType);
+		Class effectiveType = getEffectiveType(tClass, innerFieldtype);
+		String typeMapKey = (entryName != null ? entryName : effectiveType.getCanonicalName());
+		if (!typeMap.containsKey(typeMapKey)) {
+			getProtobufEquivalent(effectiveType, queue, typeMap, 0);
 		}
+
+		addFieldLine(sb, typeMap.get(typeMapKey), tabIndent, label, fieldNumber, repeated, effectiveType);
 	}
 
-	private void addFieldLine(StringBuilder sb, HashMap<Class<?>, String> typeMap, int tabIndent, Field field, int fieldNumber, boolean repeated, Class effectiveType) {
-		sb.append(getTabs(tabIndent)).append(repeated ? REPEATED : "").append(SPACE).append(typeMap.get(effectiveType)).append(SPACE).append(field.getName()).append(EQUAL).append(fieldNumber).append(SEMI_COLON).append(NEW_LINE);
+	private void addFieldLine(StringBuilder sb, String typeName, int tabIndent, String label, int fieldNumber, boolean repeated, Class effectiveType) {
+		sb.append(getTabs(tabIndent)).append(repeated ? REPEATED + SPACE : "").append(typeName).append(SPACE).append(label).append(EQUAL).append(fieldNumber).append(SEMI_COLON).append(NEW_LINE);
 	}
 
 	private Class getEffectiveType(Class fieldType, Class innterFieldType) {
+
 		if (innterFieldType == null) {
 			return fieldType;
 		}
@@ -145,27 +155,23 @@ public class BasicProtoFileGenerator implements IProtoFileGenerator {
 		return false;
 	}
 
-	private void buildEntryType(String name, StringBuilder builder, Class inntertype1, Class innerType2, HashMap<Class<?>, String> typeMap, int tabIndent) {
-		typeMap.put(Map.class, name);
 
-		builder.append(getTabs(tabIndent)).append(MESSAGE).append(SPACE).append(name).append(OPEN_BRACE).append(NEW_LINE);
+	private void buildEntryType(String name, Queue<StringBuilder> queue, ParameterizedType tt, HashMap<String, String> typeMap, int tabIndent) {
+		StringBuilder builder = new StringBuilder();
+		typeMap.put(name, name);
+		startMessage(MESSAGE, name, builder, tabIndent);
 
 		tabIndent++;
 
-		if (!typeMap.containsKey(inntertype1)) {
-			getProtobufEquivalent(innerType2, builder, typeMap, tabIndent);
-		}
-		builder.append(getTabs(tabIndent)).append(SPACE).append(typeMap.get(inntertype1)).append(SPACE).append(KEY).append(EQUAL).append(1).append(SEMI_COLON).append(NEW_LINE);
-
-		if (!typeMap.containsKey(innerType2)) {
-			getProtobufEquivalent(innerType2, builder, typeMap, tabIndent);
-		}
-		builder.append(getTabs(tabIndent)).append(SPACE).append(typeMap.get(innerType2)).append(SPACE).append(VALUE).append(EQUAL).append(2).append(SEMI_COLON).append(NEW_LINE);
+		fieldGenerator(builder, queue, typeMap, tabIndent, tt.getActualTypeArguments()[0], KEY, 1);
+		fieldGenerator(builder, queue, typeMap, tabIndent, tt.getActualTypeArguments()[1], VALUE, 2);
 
 		tabIndent--;
 
 		endBrace(builder, tabIndent);
+		queue.add(builder);
 	}
+
 
 	private StringBuilder getTabs(int tabIndent) {
 		StringBuilder sb = new StringBuilder();

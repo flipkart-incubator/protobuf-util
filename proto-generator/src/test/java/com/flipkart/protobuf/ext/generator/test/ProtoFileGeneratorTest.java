@@ -26,6 +26,7 @@ public class ProtoFileGeneratorTest {
 		validate("message with list", MessageWithList.class, "list_message.proto");
 		validate("message with basic map", MessageWithMap.class, "map_message.proto");
 		validate("message with type map", MessageWithTypeMap.class, "type_map_message.proto");
+		validate("message with list type map", MessageWithListTypeMap.class, "list_type_map_message.proto");
 		validate("message with inheritance", BaseClassImpl.class, "inheritance_message.proto");
 		validate("message with double inheritance", TwoLevelImpl.class, "double_inheritance_message.proto");
 	}
