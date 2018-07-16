@@ -1,0 +1,25 @@
+syntax = "proto3";
+option java_package = "com.flipkart.protobuf.ext.generator.test.sample";
+option java_multiple_files = true;
+package com.flipkart.protobuf.ext.generator.test.sample;
+enum SampleEnumType {
+	MOBILE=0;
+	HOME=1;
+	WORK=2;
+}
+syntax = "proto3";
+option java_package = "com.flipkart.protobuf.ext.generator.test.sample";
+option java_multiple_files = true;
+package com.flipkart.protobuf.ext.generator.test.sample;
+import "com/flipkart/protobuf/ext/generator/test/sample/SampleEnumType.proto";
+message MessageWithListTypeMap {
+	message stringToListEnumMapEntry {
+		string key=1;
+		message valueEntry {
+			string key=1;
+			com.flipkart.protobuf.ext.generator.test.sample.SampleEnumType value=2;
+		}
+		repeated valueEntry value=2;
+	}
+	repeated stringToListEnumMapEntry stringToListEnumMap=1;
+}

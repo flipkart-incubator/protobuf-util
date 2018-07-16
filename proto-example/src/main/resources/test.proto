@@ -1,6 +1,8 @@
 syntax = "proto3";
 option java_package = "com.flipkart.protobuf.ext.generator.test.sample";
 option java_multiple_files = true;
+package com.flipkart.protobuf.ext.generator.test.sample;
+import "google/protobuf/timestamp.proto";
 message PlainMessage {
     double double1=1;
     float float1=2;
@@ -8,9 +10,10 @@ message PlainMessage {
     int64 long1=4;
     bool boolean1=5;
     string string1=6;
-    double double2=7;
-    float float2=8;
-    int32 int2=9;
-    int64 long2=10;
-    bool boolean2=11;
+    google.protobuf.Timestamp dateTime=7;
+    double double2=8;
+    float float2=9;
+    int32 int2=10;
+    int64 long2=11;
+    bool boolean2=12;
 }

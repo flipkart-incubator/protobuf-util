@@ -2,11 +2,18 @@ package com.flipkart.protobuf.ext.generator.impl;
 
 import com.flipkart.protobuf.ext.generator.IProtoFileGenerator;
 import com.flipkart.protobuf.ext.generator.ITypeScanner;
+import com.flipkart.protobuf.ext.generator.utils.ClassUtils;
+import javafx.util.Pair;
 import sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl;
 
+import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.concurrent.ArrayBlockingQueue;
 
@@ -32,17 +39,37 @@ public class BasicProtoFileGenerator implements IProtoFileGenerator {
 	}
 
 	@Override
-	public String generate(Class tclass) {
-		StringBuilder builder = new StringBuilder("syntax = \"proto3\";").append(NEW_LINE);
-		String packageName = tclass.getPackage().getName();
-		builder.append("option java_package = ").append("\"").append(packageName).append("\";").append(NEW_LINE);
-		builder.append("option java_multiple_files = true;").append(NEW_LINE);
-		Queue<StringBuilder> messages = new ArrayBlockingQueue<StringBuilder>(10000);
+	public Queue<Pair<String, StringBuilder>> generate(Class tclass) {
+		Queue<Pair<String, StringBuilder>> messages = new ArrayBlockingQueue<Pair<String, StringBuilder>>(10000);
 		getProtobufEquivalent(tclass, messages, typeScanner.getTypeMap(tclass), 0);
-		for (StringBuilder stringBuilder : messages) {
-			builder.append(stringBuilder);
+		return messages;
+	}
+
+	@Override
+	public String getMessages(Queue<Pair<String, StringBuilder>> messages) {
+		StringBuilder builder = new StringBuilder();
+		for (Pair<String, StringBuilder> pair : messages) {
+			builder.append(pair.getValue());
 		}
 		return builder.toString();
+	}
+
+	@Override
+	public boolean build(String basePath, Queue<Pair<String, StringBuilder>> messages) throws IOException {
+		Path path = Paths.get(basePath);
+		Files.createDirectories(path);
+
+
+		for (Pair<String, StringBuilder> pair : messages) {
+			File file = new File(path.toFile().getCanonicalPath() + "/" + getDirectoryPath(pair.getKey()) + ".proto");
+			Files.createDirectories(file.getParentFile().toPath());
+			Files.write(file.toPath(), pair.getValue().toString().getBytes());
+		}
+		return false;
+	}
+
+	private String getDirectoryPath(String className) {
+		return ClassUtils.convertClassNameToResourcePath(className);
 	}
 
 	private String getPrefix(Class tClass) {
@@ -52,19 +79,32 @@ public class BasicProtoFileGenerator implements IProtoFileGenerator {
 		return MESSAGE;
 	}
 
-	private void getProtobufEquivalent(Class tclass, Queue<StringBuilder> queue, HashMap<String, String> typeMap, int tabIndent) {
+	private void getProtobufEquivalent(Class tclass, Queue<Pair<String, StringBuilder>> queue, HashMap<String, String> typeMap, int tabIndent) {
+		StringBuilder builder = new StringBuilder("syntax = \"proto3\";").append(NEW_LINE);
+		String packageName = tclass.getPackage().getName();
+		builder.append("option java_package = ").append("\"").append(packageName).append("\";").append(NEW_LINE);
+		builder.append("option java_multiple_files = true;").append(NEW_LINE);
+		builder.append("package ").append(packageName).append(SEMI_COLON).append(NEW_LINE);
+
 		StringBuilder sb = new StringBuilder();
 		startMessage(getPrefix(tclass), tclass.getSimpleName(), sb, tabIndent);
-		typeMap.put(tclass.getCanonicalName(), tclass.getSimpleName());
+		typeMap.put(tclass.getCanonicalName(), tclass.getCanonicalName());
 		tabIndent++;
+		Set<String> importList = new HashSet<>();
 		if (tclass.isEnum()) {
 			sb.append(handleEnum(tclass, tabIndent));
 		} else {
-			sb.append(handleClass(tclass, queue, typeMap, tabIndent, 1));
+			sb.append(handleClass(tclass, queue, importList, typeMap, tabIndent, 1));
 		}
+
 		tabIndent--;
 		endBrace(sb, tabIndent);
-		queue.add(sb);
+		Set<String> newTypes = typeScanner.getNewTypes(importList);
+		for (String entry : newTypes) {
+			builder.append("import \"").append(ClassUtils.convertClassNameToResourcePath(entry)).append(".proto\"").append(SEMI_COLON).append(NEW_LINE);
+		}
+		builder.append(sb);
+		queue.add(new Pair<String, StringBuilder>(tclass.getCanonicalName(), builder));
 	}
 
 	private void startMessage(String prefix, String name, StringBuilder sb, int tabIndent) {
@@ -75,17 +115,17 @@ public class BasicProtoFileGenerator implements IProtoFileGenerator {
 		sb.append(getTabs(tabIndent)).append(CLOSE_BRACE).append(NEW_LINE);
 	}
 
-	private StringBuilder handleClass(Class tclass, Queue<StringBuilder> queue, HashMap<String, String> typeMap, int tabIndent, int fieldNumber) {
+	private StringBuilder handleClass(Class tclass, Queue<Pair<String, StringBuilder>> queue, Set<String> importList, HashMap<String, String> typeMap, int tabIndent, int fieldNumber) {
 		StringBuilder sb = new StringBuilder();
 		Field[] fields = tclass.getDeclaredFields();
 		int currentFieldNumber = fieldNumber;
 		for (Field field : fields) {
-			fieldGenerator(sb, queue, typeMap, tabIndent, field.getGenericType(), field.getName(), currentFieldNumber);
+			fieldGenerator(sb, queue, importList, typeMap, tabIndent, field.getGenericType(), field.getName(), currentFieldNumber);
 			currentFieldNumber++;
 		}
 
-		if (!tclass.getTypeName().equals("java.lang.Object") && tclass.getSuperclass().getTypeName().equals("java.lang.Object")) {
-			StringBuilder stringBuilder = handleClass(tclass.getSuperclass(), queue, typeMap, tabIndent, currentFieldNumber);
+		if (!tclass.getTypeName().equals("java.lang.Object") && !tclass.getSuperclass().getTypeName().equals("java.lang.Object")) {
+			StringBuilder stringBuilder = handleClass(tclass.getSuperclass(), queue, importList, typeMap, tabIndent, currentFieldNumber);
 			sb.append(stringBuilder);
 		}
 		return sb;
@@ -94,22 +134,28 @@ public class BasicProtoFileGenerator implements IProtoFileGenerator {
 	private StringBuilder handleEnum(Class tclass, int tabIndent) {
 		StringBuilder sb = new StringBuilder();
 
-		Object[] enumConstants = tclass.getEnumConstants();
-		for (int i = 0; i < enumConstants.length; i++) {
-			sb.append(getTabs(tabIndent)).append(enumConstants[i]).append(EQUAL).append(i).append(SEMI_COLON).append(NEW_LINE);
+		Field[] fields = tclass.getFields();
+		for (int i = 0; i < fields.length; i++) {
+			sb.append(getTabs(tabIndent)).append(fields[i].getName()).append(EQUAL).append(i).append(SEMI_COLON).append(NEW_LINE);
 		}
 		return sb;
 	}
 
-	private void fieldGenerator(StringBuilder sb, Queue<StringBuilder> queue, HashMap<String, String> typeMap, int tabIndent, Type genericType, String label, int fieldNumber) {
+	private void fieldGenerator(StringBuilder sb, Queue<Pair<String, StringBuilder>> queue, Set<String> importList, HashMap<String, String> typeMap, int tabIndent, Type genericType, String label, int fieldNumber) {
 		Class tClass;
+		Class innerFieldtype = null;
+		String entryName = null;
 		if (genericType instanceof ParameterizedTypeImpl) {
-			tClass = ((ParameterizedTypeImpl) genericType).getRawType();
+			ParameterizedTypeImpl parameterizedType = (ParameterizedTypeImpl) genericType;
+			tClass = parameterizedType.getRawType();
+			if (tClass.getTypeName().equals("com.google.common.base.Optional")) {
+				innerFieldtype = (Class) parameterizedType.getActualTypeArguments()[0];
+			}
+
 		} else {
 			tClass = (Class) genericType;
 		}
-		Class innerFieldtype = null;
-		String entryName = null;
+
 		boolean repeated = isRepeatedFieldType(tClass);
 		if (repeated) {
 			if (tClass.isArray()) {
@@ -123,7 +169,7 @@ public class BasicProtoFileGenerator implements IProtoFileGenerator {
 				entryName = label + MAP_TYPE_SUFFIX;
 				if (genericType instanceof ParameterizedType) {
 					ParameterizedType tt = (ParameterizedType) genericType;
-					buildEntryType(entryName, queue, tt, typeMap, 0);
+					buildEntryType(sb, entryName, queue, importList, tt, typeMap, tabIndent);
 				}
 			}
 		}
@@ -133,10 +179,11 @@ public class BasicProtoFileGenerator implements IProtoFileGenerator {
 			getProtobufEquivalent(effectiveType, queue, typeMap, 0);
 		}
 
-		addFieldLine(sb, typeMap.get(typeMapKey), tabIndent, label, fieldNumber, repeated, effectiveType);
+		importList.add(effectiveType.getCanonicalName());
+		addFieldLine(sb, typeMap.get(typeMapKey), tabIndent, label, fieldNumber, repeated);
 	}
 
-	private void addFieldLine(StringBuilder sb, String typeName, int tabIndent, String label, int fieldNumber, boolean repeated, Class effectiveType) {
+	private void addFieldLine(StringBuilder sb, String typeName, int tabIndent, String label, int fieldNumber, boolean repeated) {
 		sb.append(getTabs(tabIndent)).append(repeated ? REPEATED + SPACE : "").append(typeName).append(SPACE).append(label).append(EQUAL).append(fieldNumber).append(SEMI_COLON).append(NEW_LINE);
 	}
 
@@ -156,20 +203,18 @@ public class BasicProtoFileGenerator implements IProtoFileGenerator {
 	}
 
 
-	private void buildEntryType(String name, Queue<StringBuilder> queue, ParameterizedType tt, HashMap<String, String> typeMap, int tabIndent) {
-		StringBuilder builder = new StringBuilder();
+	private void buildEntryType(StringBuilder builder, String name, Queue<Pair<String, StringBuilder>> queue, Set<String> importList, ParameterizedType tt, HashMap<String, String> typeMap, int tabIndent) {
 		typeMap.put(name, name);
 		startMessage(MESSAGE, name, builder, tabIndent);
 
 		tabIndent++;
 
-		fieldGenerator(builder, queue, typeMap, tabIndent, tt.getActualTypeArguments()[0], KEY, 1);
-		fieldGenerator(builder, queue, typeMap, tabIndent, tt.getActualTypeArguments()[1], VALUE, 2);
+		fieldGenerator(builder, queue, importList, typeMap, tabIndent, tt.getActualTypeArguments()[0], KEY, 1);
+		fieldGenerator(builder, queue, importList, typeMap, tabIndent, tt.getActualTypeArguments()[1], VALUE, 2);
 
 		tabIndent--;
 
 		endBrace(builder, tabIndent);
-		queue.add(builder);
 	}
 
 

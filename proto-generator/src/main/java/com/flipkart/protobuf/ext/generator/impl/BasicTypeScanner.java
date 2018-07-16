@@ -2,9 +2,7 @@ package com.flipkart.protobuf.ext.generator.impl;
 
 import com.flipkart.protobuf.ext.generator.ITypeScanner;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.ParameterizedType;
-import java.util.HashMap;
+import java.util.*;
 
 public class BasicTypeScanner implements ITypeScanner {
 	public HashMap<String, String> classStringMap = new HashMap<String, String>() {{
@@ -19,6 +17,15 @@ public class BasicTypeScanner implements ITypeScanner {
 		put(Long.class.getCanonicalName(), "int64");
 		put(Boolean.class.getCanonicalName(), "bool");
 		put(String.class.getCanonicalName(), "string");
+		put("org.joda.time.DateTime", "google.protobuf.Timestamp");
+	}};
+
+	public HashMap<String, String> overrideMap = new HashMap<String, String>() {{
+		put("org.joda.time.DateTime", "google.protobuf.timestamp");
+	}};
+
+	public Set<String> importNotRequired = new HashSet<String>() {{
+		add(Map.class.getCanonicalName());
 	}};
 
 
@@ -30,34 +37,26 @@ public class BasicTypeScanner implements ITypeScanner {
 	@Override
 	public HashMap<String, String> getTypeMap(Class tClass) {
 		HashMap<String, String> typeMap = (HashMap<String, String>) classStringMap.clone();
-		//recursiveTypeScan(tClass, typeMap);
 		return typeMap;
 	}
 
-	private void recursiveTypeScan(Class tClass, HashMap<Class<?>, String> typeMap) {
-		if (!typeMap.containsKey(tClass)) {
-			typeMap.put(tClass, tClass.getSimpleName());
-
-			if (tClass.isEnum()) {
-
-			} else {
-				Field[] fields = tClass.getDeclaredFields();
-				for (int i = 0; i < fields.length; i++) {
-					Class<?> fieldType = fields[i].getType();
-
-					if (!typeMap.containsKey(fieldType)) {
-						if (fields[i].getGenericType() instanceof ParameterizedType) {
-							fieldType = (Class) ((ParameterizedType) fields[i].getGenericType()).getActualTypeArguments()[0];
-						}
-						recursiveTypeScan(fieldType, typeMap);
-					}
-				}
-
-				if (tClass.getSuperclass() != Object.class) {
-					recursiveTypeScan(tClass.getSuperclass(), typeMap);
-				}
+	@Override
+	public Set<String> getNewTypes(Set<String> importList) {
+		Set<String> newTypeList = new HashSet<>();
+		for (String importEntry : importList) {
+			if (isImportRequired(importEntry)) {
+				newTypeList.add(importEntry);
+			} else if (overrideMap.containsKey(importEntry)) {
+				newTypeList.add(overrideMap.get(importEntry));
 			}
 		}
+		return newTypeList;
 	}
 
+	private boolean isImportRequired(String typeName) {
+		if (classStringMap.containsKey(typeName) || importNotRequired.contains(typeName)) {
+			return false;
+		}
+		return true;
+	}
 }

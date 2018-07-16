@@ -1,0 +1,32 @@
+syntax = "proto3";
+option java_package = "com.flipkart.protobuf.ext.generator.test.sample";
+option java_multiple_files = true;
+package com.flipkart.protobuf.ext.generator.test.sample;
+enum SampleEnumType {
+	MOBILE=0;
+	HOME=1;
+	WORK=2;
+}
+syntax = "proto3";
+option java_package = "com.flipkart.protobuf.ext.generator.test.sample";
+option java_multiple_files = true;
+package com.flipkart.protobuf.ext.generator.test.sample;
+import "com/flipkart/protobuf/ext/generator/test/sample/SampleEnumType.proto";
+message TwoLevelImpl {
+	int32 number=1;
+	string impl=2;
+	string baseAttribute=3;
+	double double1=4;
+	float float1=5;
+	int32 int1=6;
+	int64 long1=7;
+	bool boolean1=8;
+	repeated string string1=9;
+	repeated int32 integerList=10;
+	message stringToIntMapEntry {
+		string key=1;
+		int32 value=2;
+	}
+	repeated stringToIntMapEntry stringToIntMap=11;
+	com.flipkart.protobuf.ext.generator.test.sample.SampleEnumType enumType=12;
+}

@@ -28,3 +28,4 @@ pom.xml
 *.iml
 .DS_Store
 */.DS_Store
+proto-example/dependency-reduced-pom.xml

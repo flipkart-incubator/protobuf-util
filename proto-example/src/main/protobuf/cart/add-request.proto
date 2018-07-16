@@ -1,5 +1,0 @@
-syntax = "proto3";
-option java_package = "cart.client.endpoints.request";
-message SvcAddItemsRequest{
-    repeated  cartItems=1;
-}
