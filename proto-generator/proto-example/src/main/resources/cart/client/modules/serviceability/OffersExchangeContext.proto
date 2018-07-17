@@ -1,0 +1,36 @@
+syntax = "proto3";
+option java_package = "cart.client.modules.serviceability";
+option java_multiple_files = true;
+package cart.client.modules.serviceability;
+import "cart/client/modules/serviceability/ExchangeContextIdentifier.proto";
+import "cart/client/modules/serviceability/ExchangeServiceabilityStatus.proto";
+import "cart/client/modules/serviceability/ExchangeProductIdentifier.proto";
+message OffersExchangeContext {
+	string promotionId=1;
+	message productIdentifierEntry {
+		string key=1;
+		string value=2;
+	}
+	repeated productIdentifierEntry productIdentifier=2;
+	message productIdentifierNewEntry {
+		string key=1;
+		.cart.client.modules.serviceability.ExchangeContextIdentifier value=2;
+	}
+	repeated productIdentifierNewEntry productIdentifierNew=3;
+	string dummyFSN=4;
+	int32 notionalValue=5;
+	repeated string requiredServiceabilityCheck=6;
+	string selectedId=7;
+	string uniqueId=8;
+	string uniqueIdKey=9;
+	.cart.client.modules.serviceability.ExchangeServiceabilityStatus serviceabilityStatus=10;
+	int32 pickupCharge=11;
+	message userContextEntry {
+		string key=1;
+		string value=2;
+	}
+	repeated userContextEntry userContext=12;
+	.cart.client.modules.serviceability.ExchangeProductIdentifier exchangeProductIdentifier=13;
+	string contextId=14;
+	bool buyBackOffer=15;
+}

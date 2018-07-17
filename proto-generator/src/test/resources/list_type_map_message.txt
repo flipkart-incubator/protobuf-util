@@ -17,7 +17,7 @@ message MessageWithListTypeMap {
 		string key=1;
 		message valueEntry {
 			string key=1;
-			com.flipkart.protobuf.ext.generator.test.sample.SampleEnumType value=2;
+			.com.flipkart.protobuf.ext.generator.test.sample.SampleEnumType value=2;
 		}
 		repeated valueEntry value=2;
 	}

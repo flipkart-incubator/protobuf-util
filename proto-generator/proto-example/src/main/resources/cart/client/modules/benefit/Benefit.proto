@@ -1,0 +1,8 @@
+syntax = "proto3";
+option java_package = "cart.client.modules.benefit";
+option java_multiple_files = true;
+package cart.client.modules.benefit;
+import "cart/client/modules/benefit/Benefit/Type.proto";
+message Benefit {
+	.cart.client.modules.benefit.Benefit.Type type=1;
+}

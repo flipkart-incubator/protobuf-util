@@ -20,7 +20,7 @@ message MessageWithTypeMap {
 	repeated stringToStringMapEntry stringToStringMap=1;
 	message stringToEnumMapEntry {
 		string key=1;
-		com.flipkart.protobuf.ext.generator.test.sample.SampleEnumType value=2;
+		.com.flipkart.protobuf.ext.generator.test.sample.SampleEnumType value=2;
 	}
 	repeated stringToEnumMapEntry stringToEnumMap=2;
 }

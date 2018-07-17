@@ -1,0 +1,21 @@
+syntax = "proto3";
+option java_package = "cart.client.modules.serviceability";
+option java_multiple_files = true;
+package cart.client.modules.serviceability;
+import "cart/client/modules/serviceability/enums/DeliverySpeedTypeEnum.proto";
+import "cart/client/modules/serviceability/DataBag.proto";
+import "cart/client/modules/serviceability/ServiceabilityHoliday.proto";
+import "cart/client/modules/serviceability/DeliveryInfo.proto";
+import "cart/client/modules/serviceability/PickUpCentreInfo.proto";
+message DeliverySla {
+	int32 minSla=1;
+	int32 maxSla=2;
+	int32 internalSla=3;
+	int32 sla=4;
+	.cart.client.modules.serviceability.enums.DeliverySpeedTypeEnum speed=5;
+	repeated .cart.client.modules.serviceability.ServiceabilityHoliday serviceabilityHolidays=6;
+	.cart.client.modules.serviceability.DeliveryInfo deliveryInfo=7;
+	.cart.client.modules.serviceability.PickUpCentreInfo selectedPickUpDetails=8;
+	.cart.client.modules.serviceability.DataBag dataBag=9;
+	string scPreferred=10;
+}

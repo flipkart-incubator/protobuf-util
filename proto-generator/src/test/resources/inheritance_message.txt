@@ -27,5 +27,5 @@ message BaseClassImpl {
 		int32 value=2;
 	}
 	repeated stringToIntMapEntry stringToIntMap=10;
-	com.flipkart.protobuf.ext.generator.test.sample.SampleEnumType enumType=11;
+	.com.flipkart.protobuf.ext.generator.test.sample.SampleEnumType enumType=11;
 }

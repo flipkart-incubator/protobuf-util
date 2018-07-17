@@ -1,0 +1,23 @@
+syntax = "proto3";
+option java_package = "cart.client.modules.disbursal.response";
+option java_multiple_files = true;
+package cart.client.modules.disbursal.response;
+import "google/protobuf/any.proto";
+message DisbursalItemResponseMetaData {
+	repeated string cancellationIds=1;
+	string shipGroupId=2;
+	string cancellationId=3;
+	string userAction=4;
+	string basketAction=5;
+	string basketEntryAction=6;
+	int32 pickUpCharge=7;
+	string returnGroupId=8;
+	repeated string returnPolicyId=9;
+	int32 effectiveDiscount=10;
+	message otherInfoEntry {
+		string key=1;
+		.google.protobuf.Any value=2;
+	}
+	repeated otherInfoEntry otherInfo=11;
+	bool $assertionsDisabled=12;
+}

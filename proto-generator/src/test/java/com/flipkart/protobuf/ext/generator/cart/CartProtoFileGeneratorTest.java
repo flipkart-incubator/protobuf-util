@@ -1,7 +1,6 @@
 package com.flipkart.protobuf.ext.generator.cart;
 
 import cart.client.endpoints.request.SvcAddItemsRequest;
-import cart.client.modules.disbursal.response.DisbursalOfferMetaData;
 import com.flipkart.protobuf.ext.generator.IProtoFileGenerator;
 import com.flipkart.protobuf.ext.generator.impl.BasicProtoFileGenerator;
 import com.flipkart.protobuf.ext.generator.impl.BasicTypeScanner;

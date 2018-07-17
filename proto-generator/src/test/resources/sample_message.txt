@@ -16,5 +16,5 @@ message SampleMessage {
     string name=1;
     int32 id=2;
     string email=3;
-    repeated com.flipkart.protobuf.ext.generator.test.sample.SampleEnumType sampleEnumTypes=4;
+    repeated .com.flipkart.protobuf.ext.generator.test.sample.SampleEnumType sampleEnumTypes=4;
 }

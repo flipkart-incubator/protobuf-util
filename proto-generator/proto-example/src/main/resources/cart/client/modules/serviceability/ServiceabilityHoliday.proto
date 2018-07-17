@@ -1,0 +1,11 @@
+syntax = "proto3";
+option java_package = "cart.client.modules.serviceability";
+option java_multiple_files = true;
+package cart.client.modules.serviceability;
+import "google/protobuf/timestamp.proto";
+import "cart/client/modules/serviceability/enums/HolidayTypeEnum.proto";
+message ServiceabilityHoliday {
+	.google.protobuf.Timestamp holidayDate=1;
+	string reason=2;
+	.cart.client.modules.serviceability.enums.HolidayTypeEnum holidayTypeEnum=3;
+}

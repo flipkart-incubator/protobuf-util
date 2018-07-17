@@ -10,6 +10,7 @@ public class PlainMessage {
 	boolean boolean1;
 	String string1;
 	private DateTime dateTime;
+	private Object object;
 
 	Double double2;
 	Float float2;

@@ -1,0 +1,11 @@
+syntax = "proto3";
+option java_package = "cart.client.modules.disbursal.enums";
+option java_multiple_files = true;
+package cart.client.modules.disbursal.enums;
+enum OfferPaymentTriggerEnum {
+	ANY=0;
+	WALLET=1;
+	BANK=2;
+	NBFC=3;
+	OTHER=4;
+}

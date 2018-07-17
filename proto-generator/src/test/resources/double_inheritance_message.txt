@@ -28,5 +28,5 @@ message TwoLevelImpl {
 		int32 value=2;
 	}
 	repeated stringToIntMapEntry stringToIntMap=11;
-	com.flipkart.protobuf.ext.generator.test.sample.SampleEnumType enumType=12;
+	.com.flipkart.protobuf.ext.generator.test.sample.SampleEnumType enumType=12;
 }

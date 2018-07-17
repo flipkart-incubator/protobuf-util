@@ -1,0 +1,23 @@
+syntax = "proto3";
+option java_package = "cart.client.endpoints.request";
+option java_multiple_files = true;
+package cart.client.endpoints.request;
+import "cart/client/modules/serviceability/OffersExchangeContext.proto";
+import "cart/client/endpoints/common/enums/ActionType.proto";
+import "cart/client/v2/datamodels/CartItemMetaData.proto";
+import "cart/client/endpoints/common/meta/cartitem/Quantity.proto";
+import "cart/client/endpoints/common/enums/CartItemAddedAgainst.proto";
+import "cart/client/v2/datamodels/MarketPlace.proto";
+import "cart/client/modules/serviceability/CartFulfilmentInfo.proto";
+message SvcCartItemRequest {
+	string itemSource=1;
+	string itemId=2;
+	.cart.client.endpoints.common.enums.CartItemAddedAgainst itemAddedBy=3;
+	.cart.client.modules.serviceability.OffersExchangeContext exchangeContext=4;
+	.cart.client.modules.serviceability.CartFulfilmentInfo cartFulfilmentInfo=5;
+	.cart.client.endpoints.common.meta.cartitem.Quantity quantity=6;
+	string parentContext=7;
+	.cart.client.v2.datamodels.MarketPlace marketPlaceId=8;
+	.cart.client.endpoints.common.enums.ActionType actionType=9;
+	.cart.client.v2.datamodels.CartItemMetaData cartItemMetaData=10;
+}
