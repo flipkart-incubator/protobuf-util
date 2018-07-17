@@ -2,7 +2,7 @@ syntax = "proto3";
 option java_package = "cart.client.modules.metadata";
 option java_multiple_files = true;
 package cart.client.modules.metadata;
-import "cart/client/errors/ErrorCode/Value.proto";
+import "cart/client/errors/Value.proto";
 import "cart/client/statemanagement/ItemState.proto";
 message StatusResponse {
 	.cart.client.errors.Value statusCode=1;

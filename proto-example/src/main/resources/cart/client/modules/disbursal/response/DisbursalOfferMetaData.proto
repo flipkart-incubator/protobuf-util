@@ -3,12 +3,12 @@ option java_package = "cart.client.modules.disbursal.response";
 option java_multiple_files = true;
 package cart.client.modules.disbursal.response;
 import "cart/client/modules/disbursal/response/DisbursalApplicationMetaData.proto";
-import "cart/client/modules/disbursal/response/OfferObjects/OfferAdjustmentType.proto";
+import "cart/client/modules/disbursal/response/GiveAwayType.proto";
 import "google/protobuf/any.proto";
+import "cart/client/modules/disbursal/response/OfferAdjustmentType.proto";
+import "cart/client/modules/disbursal/response/BasedOn.proto";
 import "cart/client/v2/datamodels/MarketPlace.proto";
-import "cart/client/modules/disbursal/response/OfferObjects/GiveAwayType.proto";
-import "cart/client/modules/disbursal/response/OfferObjects/BasedOn.proto";
-import "cart/client/modules/disbursal/response/OfferObjects/ApplicableOnType.proto";
+import "cart/client/modules/disbursal/response/ApplicableOnType.proto";
 import "cart/client/modules/disbursal/enums/OfferPaymentTriggerEnum.proto";
 message DisbursalOfferMetaData {
 	message offerMetaDataEnumObjectMapEntry {
