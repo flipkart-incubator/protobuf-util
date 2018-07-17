@@ -82,14 +82,13 @@ public class BasicProtoFileGenerator implements IProtoFileGenerator {
 	private void getProtobufEquivalent(Class tclass, Queue<Pair<String, StringBuilder>> queue, HashMap<String, String> typeMap, int tabIndent) {
 		StringBuilder builder = new StringBuilder("syntax = \"proto3\";").append(NEW_LINE);
 		String packageName = tclass.getPackage().getName();
-//		String packageName = tclass.getCanonicalName().substring(0, tclass.getCanonicalName().lastIndexOf("."));
 		builder.append("option java_package = ").append("\"").append(packageName).append("\";").append(NEW_LINE);
 		builder.append("option java_multiple_files = true;").append(NEW_LINE);
 		builder.append("package ").append(packageName).append(SEMI_COLON).append(NEW_LINE);
 
 		StringBuilder sb = new StringBuilder();
 		startMessage(getPrefix(tclass), tclass.getSimpleName(), sb, tabIndent);
-		typeMap.put(tclass.getCanonicalName(), tclass.getCanonicalName());
+		typeMap.put(getPackageName(tclass), getPackageName(tclass));
 		tabIndent++;
 		Set<String> importList = new HashSet<>();
 		if (tclass.isEnum()) {
@@ -105,7 +104,7 @@ public class BasicProtoFileGenerator implements IProtoFileGenerator {
 			builder.append("import \"").append(ClassUtils.convertClassNameToResourcePath(entry)).append(".proto\"").append(SEMI_COLON).append(NEW_LINE);
 		}
 		builder.append(sb);
-		queue.add(new Pair<String, StringBuilder>(tclass.getCanonicalName(), builder));
+		queue.add(new Pair<String, StringBuilder>(getPackageName(tclass), builder));
 	}
 
 	private void startMessage(String prefix, String name, StringBuilder sb, int tabIndent) {
@@ -175,12 +174,12 @@ public class BasicProtoFileGenerator implements IProtoFileGenerator {
 			}
 		}
 		Class effectiveType = getEffectiveType(tClass, innerFieldtype);
-		String typeMapKey = (entryName != null ? entryName : effectiveType.getCanonicalName());
+		String typeMapKey = (entryName != null ? entryName : getPackageName(effectiveType));
 		if (!typeMap.containsKey(typeMapKey)) {
 			getProtobufEquivalent(effectiveType, queue, typeMap, 0);
 		}
 
-		importList.add(effectiveType.getCanonicalName());
+		importList.add(getPackageName(effectiveType));
 		addFieldLine(sb, typeMap.get(typeMapKey), tabIndent, label, fieldNumber, repeated);
 	}
 
@@ -206,7 +205,6 @@ public class BasicProtoFileGenerator implements IProtoFileGenerator {
 		return false;
 	}
 
-
 	private void buildEntryType(StringBuilder builder, String name, Queue<Pair<String, StringBuilder>> queue, Set<String> importList, ParameterizedType tt, HashMap<String, String> typeMap, int tabIndent) {
 		typeMap.put(name, name);
 		startMessage(MESSAGE, name, builder, tabIndent);
@@ -229,5 +227,12 @@ public class BasicProtoFileGenerator implements IProtoFileGenerator {
 		}
 
 		return sb;
+	}
+
+	private String getPackageName(Class tClass){
+		if(tClass.getPackage() == null){
+			return tClass.getCanonicalName();
+		}
+		return tClass.getPackage().getName() + "." + tClass.getSimpleName();
 	}
 }

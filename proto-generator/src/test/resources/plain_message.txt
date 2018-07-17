@@ -2,8 +2,17 @@ syntax = "proto3";
 option java_package = "com.flipkart.protobuf.ext.generator.test.sample";
 option java_multiple_files = true;
 package com.flipkart.protobuf.ext.generator.test.sample;
+enum SIMPLE_ENUM {
+	FIRST=0;
+	SECOND=1;
+}
+syntax = "proto3";
+option java_package = "com.flipkart.protobuf.ext.generator.test.sample";
+option java_multiple_files = true;
+package com.flipkart.protobuf.ext.generator.test.sample;
 import "google/protobuf/any.proto";
 import "google/protobuf/timestamp.proto";
+import "com/flipkart/protobuf/ext/generator/test/sample/SIMPLE_ENUM.proto";
 message PlainMessage {
 	double double1=1;
 	float float1=2;
@@ -13,9 +22,10 @@ message PlainMessage {
 	string string1=6;
 	.google.protobuf.Timestamp dateTime=7;
 	.google.protobuf.Any object=8;
-	double double2=9;
-	float float2=10;
-	int32 int2=11;
-	int64 long2=12;
-	bool boolean2=13;
+	.com.flipkart.protobuf.ext.generator.test.sample.SIMPLE_ENUM simple_enum=9;
+	double double2=10;
+	float float2=11;
+	int32 int2=12;
+	int64 long2=13;
+	bool boolean2=14;
 }

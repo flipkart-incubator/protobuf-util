@@ -11,6 +11,7 @@ public class PlainMessage {
 	String string1;
 	private DateTime dateTime;
 	private Object object;
+	private EnumContainer.SIMPLE_ENUM simple_enum;
 
 	Double double2;
 	Float float2;

@@ -4,6 +4,6 @@ option java_multiple_files = true;
 package cart.client.modules.disbursal.enums;
 enum DisbursalTypeEnum {
 	CHARGE=0;
-	DISCOUNT=1;
-	FREEBIE=2;
+	DISCOUNT_1=1;
+	FREEBIE_1=2;
 }
