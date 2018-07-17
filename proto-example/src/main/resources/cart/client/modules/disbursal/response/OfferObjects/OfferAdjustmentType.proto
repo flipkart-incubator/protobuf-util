@@ -1,0 +1,11 @@
+syntax = "proto3";
+option java_package = "cart.client.modules.disbursal.response";
+option java_multiple_files = true;
+package cart.client.modules.disbursal.response;
+enum OfferAdjustmentType {
+	PROMOTION_DISCOUNT=0;
+	FREEBIE_DISCOUNT=1;
+	EXCHANGE_DISCOUNT=2;
+	DEFERRED_DISCOUNT=3;
+	EMI_DISCOUNT=4;
+}

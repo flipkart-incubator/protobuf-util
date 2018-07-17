@@ -1,0 +1,9 @@
+syntax = "proto3";
+option java_package = "cart.client.v2.datamodels";
+option java_multiple_files = true;
+package cart.client.v2.datamodels;
+enum MarketPlace {
+	FLIPKART=0;
+	GROCERY=1;
+	EMERALD=2;
+}

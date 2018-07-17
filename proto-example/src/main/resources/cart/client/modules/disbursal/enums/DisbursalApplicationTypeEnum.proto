@@ -1,0 +1,8 @@
+syntax = "proto3";
+option java_package = "cart.client.modules.disbursal.enums";
+option java_multiple_files = true;
+package cart.client.modules.disbursal.enums;
+enum DisbursalApplicationTypeEnum {
+	INSTANT=0;
+	DEFERRED=1;
+}

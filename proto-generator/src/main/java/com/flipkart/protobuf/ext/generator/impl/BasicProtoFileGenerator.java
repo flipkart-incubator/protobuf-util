@@ -184,6 +184,9 @@ public class BasicProtoFileGenerator implements IProtoFileGenerator {
 	}
 
 	private void addFieldLine(StringBuilder sb, String typeName, int tabIndent, String label, int fieldNumber, boolean repeated) {
+		if(typeName.contains(".")){
+			typeName="." + typeName;
+		}
 		sb.append(getTabs(tabIndent)).append(repeated ? REPEATED + SPACE : "").append(typeName).append(SPACE).append(label).append(EQUAL).append(fieldNumber).append(SEMI_COLON).append(NEW_LINE);
 	}
 

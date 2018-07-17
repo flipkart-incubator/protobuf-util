@@ -1,0 +1,17 @@
+syntax = "proto3";
+option java_package = "cart.client.datamodels";
+option java_multiple_files = true;
+package cart.client.datamodels;
+enum ReservationStatus {
+	RESERVED=0;
+	OOS=1;
+	WAITLIST=2;
+	EXPIRED=3;
+	TRANSIENT=4;
+	INCONSISTENT=5;
+	INVALID_ID=6;
+	ROLLBACK=7;
+	ORDER_COMPLETE=8;
+	NOT_RESERVABLE=9;
+	ALLOTTED=10;
+}

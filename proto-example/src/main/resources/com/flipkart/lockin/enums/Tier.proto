@@ -1,0 +1,7 @@
+syntax = "proto3";
+option java_package = "com.flipkart.lockin.enums";
+option java_multiple_files = true;
+package com.flipkart.lockin.enums;
+enum Tier {
+	DEFAULT=0;
+}

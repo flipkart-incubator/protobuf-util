@@ -1,0 +1,9 @@
+syntax = "proto3";
+option java_package = "cart.client.endpoints.common.meta.cartitem";
+option java_multiple_files = true;
+package cart.client.endpoints.common.meta.cartitem;
+enum ServiceType {
+	TIER=0;
+	GIFTWRAP=1;
+	PICKUP_CENTRE=2;
+}

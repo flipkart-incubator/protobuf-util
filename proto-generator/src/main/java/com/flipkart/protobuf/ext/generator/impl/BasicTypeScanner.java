@@ -18,10 +18,12 @@ public class BasicTypeScanner implements ITypeScanner {
 		put(Boolean.class.getCanonicalName(), "bool");
 		put(String.class.getCanonicalName(), "string");
 		put("org.joda.time.DateTime", "google.protobuf.Timestamp");
+		put(Object.class.getCanonicalName(), "google.protobuf.Any");
 	}};
 
 	public HashMap<String, String> overrideMap = new HashMap<String, String>() {{
 		put("org.joda.time.DateTime", "google.protobuf.timestamp");
+		put(Object.class.getCanonicalName(), "google.protobuf.any");
 	}};
 
 	public Set<String> importNotRequired = new HashSet<String>() {{

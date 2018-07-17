@@ -1,0 +1,15 @@
+syntax = "proto3";
+option java_package = "com.flipkart.lockin.model.api";
+option java_multiple_files = true;
+package com.flipkart.lockin.model.api;
+import "com/flipkart/lockin/model/membership/MembershipTenureInfo.proto";
+import "com/flipkart/lockin/enums/MembershipStatus.proto";
+import "com/flipkart/lockin/enums/Benefit.proto";
+message LockinUserStateResponse {
+	string accountId=1;
+	.com.flipkart.lockin.enums.MembershipStatus membershipStatus=2;
+	.com.flipkart.lockin.model.membership.MembershipTenureInfo currentTenure=3;
+	string memberSince=4;
+	repeated .com.flipkart.lockin.enums.Benefit eligibleBenefits=5;
+	repeated .com.flipkart.lockin.enums.Benefit potentialBenefits=6;
+}

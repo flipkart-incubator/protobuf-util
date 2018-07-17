@@ -1,0 +1,20 @@
+syntax = "proto3";
+option java_package = "cart.client.modules.adjustments";
+option java_multiple_files = true;
+package cart.client.modules.adjustments;
+import "cart/client/modules/adjustments/enums/AdjustmentSourceType.proto";
+import "cart/client/modules/adjustments/Amount.proto";
+import "cart/client/modules/adjustments/enums/AdjustmentFormat.proto";
+import "cart/client/modules/adjustments/enums/AdjustmentType.proto";
+import "cart/client/modules/adjustments/enums/AdjustmentImpact.proto";
+message Adjustment {
+	.cart.client.modules.adjustments.enums.AdjustmentType adjustmentType=1;
+	.cart.client.modules.adjustments.enums.AdjustmentImpact adjustmentImpact=2;
+	.cart.client.modules.adjustments.enums.AdjustmentFormat adjustmentFormat=3;
+	.cart.client.modules.adjustments.Amount netApplicableAmount=4;
+	.cart.client.modules.adjustments.Amount unitApplicableAmount=5;
+	string message=6;
+	.cart.client.modules.adjustments.enums.AdjustmentSourceType sourceType=7;
+	string sourceRef=8;
+	string offerId=9;
+}

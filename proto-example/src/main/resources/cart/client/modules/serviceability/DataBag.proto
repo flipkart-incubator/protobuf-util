@@ -1,0 +1,22 @@
+syntax = "proto3";
+option java_package = "cart.client.modules.serviceability";
+option java_multiple_files = true;
+package cart.client.modules.serviceability;
+import "cart/client/modules/serviceability/Tag.proto";
+message DataBag {
+	int32 sla=1;
+	string shipmentMovementType=2;
+	double cost=3;
+	bool available=4;
+	string slotRefId=5;
+	string sourceRefId=6;
+	.cart.client.modules.serviceability.Tag tags=7;
+	string sourceEpst=8;
+	string sourceLpst=9;
+	string endTime=10;
+	string startTime=11;
+	string bookingRefId=12;
+	string naReason=13;
+	bool dplusiGuaranteed=14;
+	bool dplusiEligible=15;
+}

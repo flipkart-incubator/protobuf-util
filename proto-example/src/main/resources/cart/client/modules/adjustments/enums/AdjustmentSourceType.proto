@@ -1,0 +1,9 @@
+syntax = "proto3";
+option java_package = "cart.client.modules.adjustments.enums";
+option java_multiple_files = true;
+package cart.client.modules.adjustments.enums;
+enum AdjustmentSourceType {
+	OFFERS=0;
+	SERVICEABILITY=1;
+	PRODUCT_INFO=2;
+}

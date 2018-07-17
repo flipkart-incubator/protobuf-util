@@ -1,9 +1,10 @@
 package com.flipkart.protobuf.ext.generator.cart;
 
+import cart.client.endpoints.request.SvcAddItemsRequest;
+import cart.client.modules.disbursal.response.DisbursalOfferMetaData;
 import com.flipkart.protobuf.ext.generator.IProtoFileGenerator;
 import com.flipkart.protobuf.ext.generator.impl.BasicProtoFileGenerator;
 import com.flipkart.protobuf.ext.generator.impl.BasicTypeScanner;
-import com.flipkart.protobuf.ext.generator.test.sample.PlainMessage;
 import javafx.util.Pair;
 import org.junit.Test;
 
@@ -15,12 +16,12 @@ public class CartProtoFileGeneratorTest {
 
 	@Test
 	public void cartRequestGenerator() throws IOException {
-		Queue<Pair<String, StringBuilder>> messages = protoFileGenerator.generate(PlainMessage.class);
+		Queue<Pair<String, StringBuilder>> messages = protoFileGenerator.generate(SvcAddItemsRequest.class);
 		System.out.println(protoFileGenerator.getMessages(messages));
-		String resourceFolder = "proto-generator/src/test/resources";
-		String targetFolder = resourceFolder + "/generated";
+		String resourceFolder = "proto-example/src/main/resources";
+		String targetFolder = resourceFolder ;
 
 
-//		protoFileGenerator.build(targetFolder, messages);
+		protoFileGenerator.build(targetFolder, messages);
 	}
 }

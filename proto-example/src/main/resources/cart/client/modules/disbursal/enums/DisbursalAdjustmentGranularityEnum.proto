@@ -1,0 +1,11 @@
+syntax = "proto3";
+option java_package = "cart.client.modules.disbursal.enums";
+option java_multiple_files = true;
+package cart.client.modules.disbursal.enums;
+enum DisbursalAdjustmentGranularityEnum {
+	ITEM_SELLING_PRICE=0;
+	ITEM_SERVICE_CHARGE=1;
+	BASKET_CONTENTS=2;
+	BASKET_NET_PRICE=3;
+	BASKET_SERVICE_CHARGE=4;
+}

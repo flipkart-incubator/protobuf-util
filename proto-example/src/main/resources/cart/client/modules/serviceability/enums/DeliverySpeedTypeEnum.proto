@@ -1,0 +1,9 @@
+syntax = "proto3";
+option java_package = "cart.client.modules.serviceability.enums";
+option java_multiple_files = true;
+package cart.client.modules.serviceability.enums;
+enum DeliverySpeedTypeEnum {
+	EXPRESS=0;
+	REGULAR=1;
+	PREMIUM=2;
+}

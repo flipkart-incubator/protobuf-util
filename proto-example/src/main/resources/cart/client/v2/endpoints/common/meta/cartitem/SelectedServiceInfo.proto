@@ -1,0 +1,15 @@
+syntax = "proto3";
+option java_package = "cart.client.v2.endpoints.common.meta.cartitem";
+option java_multiple_files = true;
+package cart.client.v2.endpoints.common.meta.cartitem;
+import "cart/client/endpoints/common/meta/cartitem/ServiceType.proto";
+import "cart/client/modules/serviceability/Slot.proto";
+import "cart/client/endpoints/common/meta/cartitem/UpdatedBy.proto";
+import "cart/client/endpoints/common/meta/Giftwrap.proto";
+message SelectedServiceInfo {
+	.cart.client.endpoints.common.meta.cartitem.ServiceType type=1;
+	string value=2;
+	.cart.client.endpoints.common.meta.Giftwrap gwInfo=3;
+	.cart.client.endpoints.common.meta.cartitem.UpdatedBy updatedBy=4;
+	.cart.client.modules.serviceability.Slot slot=5;
+}

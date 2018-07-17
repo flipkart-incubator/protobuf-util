@@ -1,0 +1,12 @@
+syntax = "proto3";
+option java_package = "cart.client.endpoints.request";
+option java_multiple_files = true;
+package cart.client.endpoints.request;
+import "cart/client/v2/datamodels/MarketPlace.proto";
+import "cart/client/endpoints/request/SvcCartItemRequest.proto";
+import "cart/client/endpoints/common/meta/cart/SvcUserMetaInfo.proto";
+message SvcAddItemsRequest {
+	repeated .cart.client.endpoints.request.SvcCartItemRequest cartItems=1;
+	.cart.client.endpoints.common.meta.cart.SvcUserMetaInfo userMetaInfo=2;
+	repeated .cart.client.v2.datamodels.MarketPlace marketPlacesToView=3;
+}
