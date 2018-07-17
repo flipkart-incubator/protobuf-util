@@ -1,0 +1,12 @@
+syntax = "proto3";
+option java_package = "cart.client.v2.datamodels";
+option java_multiple_files = true;
+package cart.client.v2.datamodels;
+import "cart/client/v2/datamodels/CartItemInfo.proto";
+import "cart/client/v2/datamodels/MarketPlaceMetaData.proto";
+import "cart/client/v2/datamodels/MarketPlace.proto";
+message MarketPlaceInfo {
+	.cart.client.v2.datamodels.MarketPlace marketPlace=1;
+	repeated .cart.client.v2.datamodels.CartItemInfo cartItems=2;
+	.cart.client.v2.datamodels.MarketPlaceMetaData marketPlaceMetaData=3;
+}

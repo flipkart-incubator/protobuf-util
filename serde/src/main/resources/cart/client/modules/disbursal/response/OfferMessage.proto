@@ -1,0 +1,13 @@
+syntax = "proto3";
+option java_package = "cart.client.modules.disbursal.response";
+option java_multiple_files = true;
+package cart.client.modules.disbursal.response;
+import "cart/client/modules/disbursal/response/MessageText.proto";
+import "cart/client/modules/disbursal/response/MessageLink.proto";
+import "cart/client/modules/disbursal/response/MessageType.proto";
+message OfferMessage {
+	.cart.client.modules.disbursal.response.MessageText text=1;
+	.cart.client.modules.disbursal.response.MessageLink tnc=2;
+	.cart.client.modules.disbursal.response.MessageLink cta=3;
+	.cart.client.modules.disbursal.response.MessageType messageType=4;
+}

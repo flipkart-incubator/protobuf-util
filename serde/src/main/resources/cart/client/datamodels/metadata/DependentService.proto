@@ -1,0 +1,7 @@
+syntax = "proto3";
+option java_package = "cart.client.datamodels.metadata";
+option java_multiple_files = true;
+package cart.client.datamodels.metadata;
+enum DependentService {
+	Pricing=0;
+}

@@ -1,0 +1,17 @@
+syntax = "proto3";
+option java_package = "cart.client.v2.datamodels";
+option java_multiple_files = true;
+package cart.client.v2.datamodels;
+import "cart/client/endpoints/common/enums/CartDomainName.proto";
+import "cart/client/v2/datamodels/MarketPlaceInfo.proto";
+import "cart/client/endpoints/common/enums/CartAssocType.proto";
+import "cart/client/v2/datamodels/CartMetaData.proto";
+message CartInfo {
+	string id=1;
+	.cart.client.endpoints.common.enums.CartDomainName domain=2;
+	.cart.client.endpoints.common.enums.CartAssocType assocType=3;
+	string assocId=4;
+	int64 version=5;
+	repeated .cart.client.v2.datamodels.MarketPlaceInfo marketPlaceInfoList=6;
+	.cart.client.v2.datamodels.CartMetaData cartMetaData=7;
+}

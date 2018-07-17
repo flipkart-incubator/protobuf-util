@@ -1,0 +1,32 @@
+syntax = "proto3";
+option java_package = "cart.client.modules.serviceability";
+option java_multiple_files = true;
+package cart.client.modules.serviceability;
+import "cart/client/modules/serviceability/DeliverySla.proto";
+import "cart/client/modules/serviceability/PromiseType.proto";
+import "cart/client/modules/serviceability/ServiceCharges.proto";
+import "cart/client/modules/serviceability/Slot.proto";
+import "cart/client/modules/serviceability/enums/ServiceNameEnum.proto";
+import "cart/client/modules/serviceability/PickUpCentreInfo.proto";
+message ServiceDetails {
+	.cart.client.modules.serviceability.enums.ServiceNameEnum serviceNameEnum=1;
+	bool serviceable=2;
+	bool hasOutstandingPurchaseLimit=3;
+	int32 outstandingPurchaseLimit=4;
+	.cart.client.modules.serviceability.ServiceCharges serviceCharges=5;
+	string errorCode=6;
+	string errorMsg=7;
+	bool isDefaultPromise=8;
+	repeated string serviceabilityTags=9;
+	.cart.client.modules.serviceability.DeliverySla deliverySla=10;
+	message pickUpOptionsEntry {
+		string key=1;
+		.cart.client.modules.serviceability.PickUpCentreInfo value=2;
+	}
+	repeated pickUpOptionsEntry pickUpOptions=11;
+	repeated .cart.client.modules.serviceability.Slot slots=12;
+	.cart.client.modules.serviceability.PromiseType promiseType=13;
+	bool useDefaultSlot=14;
+	int32 slotCost=15;
+	int32 maxQuantity=16;
+}

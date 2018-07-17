@@ -1,0 +1,21 @@
+syntax = "proto3";
+option java_package = "cart.client.v2.datamodels";
+option java_multiple_files = true;
+package cart.client.v2.datamodels;
+import "google/protobuf/timestamp.proto";
+import "cart/client/v2/datamodels/CartItemMetaData.proto";
+import "cart/client/endpoints/common/enums/CartItemAddedAgainst.proto";
+import "cart/client/v2/datamodels/MarketPlace.proto";
+message CartItemInfo {
+	string id=1;
+	string cartId=2;
+	.cart.client.endpoints.common.enums.CartItemAddedAgainst itemAddedAgainst=3;
+	string itemSource=4;
+	string itemId=5;
+	string isDeleted=6;
+	.google.protobuf.Timestamp addedDateTime=7;
+	.cart.client.v2.datamodels.CartItemMetaData cartItemMetaData=8;
+	string parentContext=9;
+	string parentCartItemId=10;
+	.cart.client.v2.datamodels.MarketPlace marketPlaceId=11;
+}

@@ -149,7 +149,11 @@ public class BasicProtoFileGenerator implements IProtoFileGenerator {
 			ParameterizedTypeImpl parameterizedType = (ParameterizedTypeImpl) genericType;
 			tClass = parameterizedType.getRawType();
 			if (tClass.getTypeName().equals("com.google.common.base.Optional")) {
-				innerFieldtype = (Class) parameterizedType.getActualTypeArguments()[0];
+				try {
+					innerFieldtype = (Class) parameterizedType.getActualTypeArguments()[0];
+				}catch (Exception ex){
+					ex.printStackTrace();
+				}
 			}
 
 		} else {

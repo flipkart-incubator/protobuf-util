@@ -1,0 +1,9 @@
+syntax = "proto3";
+option java_package = "cart.client.modules.disbursal.response";
+option java_multiple_files = true;
+package cart.client.modules.disbursal.response;
+import "cart/client/modules/disbursal/enums/DisbursalChargeNameEnum.proto";
+message DisbursalCharges {
+	.cart.client.modules.disbursal.enums.DisbursalChargeNameEnum chargeType=1;
+	int32 charge=2;
+}

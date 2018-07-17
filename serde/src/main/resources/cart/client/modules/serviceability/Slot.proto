@@ -1,0 +1,10 @@
+syntax = "proto3";
+option java_package = "cart.client.modules.serviceability";
+option java_multiple_files = true;
+package cart.client.modules.serviceability;
+import "google/protobuf/timestamp.proto";
+message Slot {
+	.google.protobuf.Timestamp fromTime=1;
+	.google.protobuf.Timestamp toTime=2;
+	bool isAvailable=3;
+}

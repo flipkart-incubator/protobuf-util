@@ -1,0 +1,13 @@
+syntax = "proto3";
+option java_package = "cart.client.modules.disbursal.response";
+option java_multiple_files = true;
+package cart.client.modules.disbursal.response;
+message DisbursalPBOOfferDetail {
+	string offerId=1;
+	message metadataEntry {
+		string key=1;
+		string value=2;
+	}
+	repeated metadataEntry metadata=2;
+	int32 offerItemAmount=3;
+}

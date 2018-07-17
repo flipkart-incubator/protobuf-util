@@ -1,0 +1,9 @@
+syntax = "proto3";
+option java_package = "cart.client.modules.serviceability";
+option java_multiple_files = true;
+package cart.client.modules.serviceability;
+message Tag {
+	string cocCode=1;
+	string routeCode=2;
+	string slotTime=3;
+}

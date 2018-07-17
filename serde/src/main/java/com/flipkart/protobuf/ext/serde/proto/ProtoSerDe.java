@@ -1,10 +1,11 @@
 package com.flipkart.protobuf.ext.serde.proto;
 
+import cart.client.v2.datamodels.CartInfo;
 import com.flipkart.protobuf.ext.serde.ISerDe;
 
 public class ProtoSerDe implements ISerDe {
 	@Override
-	public <T> String serialize(T object) {
+	public <T> byte[] serialize(T object) {
 		return null;
 	}
 

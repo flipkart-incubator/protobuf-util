@@ -1,0 +1,7 @@
+syntax = "proto3";
+option java_package = "cart.client.v2.datamodels";
+option java_multiple_files = true;
+package cart.client.v2.datamodels;
+message MinimumBuyabilityInfo {
+	double minPurchaseValue=1;
+}

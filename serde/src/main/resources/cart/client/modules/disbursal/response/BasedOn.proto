@@ -1,0 +1,12 @@
+syntax = "proto3";
+option java_package = "cart.client.modules.disbursal.response";
+option java_multiple_files = true;
+package cart.client.modules.disbursal.response;
+enum BasedOn {
+	exchange=0;
+	none=1;
+	pbo=2;
+	bank=3;
+	wallet=4;
+	nbfc=5;
+}

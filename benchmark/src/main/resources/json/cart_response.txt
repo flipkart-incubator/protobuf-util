@@ -1,0 +1,749 @@
+{
+  "id": "ACHWI93X4WDG2JDGRBYCE54ORG7M174S:P:A-0001",
+  "domain": "PHYSICAL",
+  "assocType": "ACCOUNT",
+  "assocId": "ACHWI93X4WDG2JDGRBYCE54ORG7M174S",
+  "version": 1531836107211,
+  "marketPlaceInfoList": [
+    {
+      "marketPlace": "FLIPKART",
+      "cartItems": [
+        {
+          "id": "LSTMOBFF5ZGTY7JHSDHE06MDN:ACHWI93X4WDG2JDGRBYCE54ORG7M174S:P:A-0001:U:SPCMS",
+          "cartId": "ACHWI93X4WDG2JDGRBYCE54ORG7M174S:P:A-0001",
+          "itemAddedAgainst": "USER",
+          "itemSource": "SPCMS",
+          "itemId": "LSTMOBFF5ZGTY7JHSDHE06MDN",
+          "isDeleted": "0",
+          "addedDateTime": 1531836106000,
+          "cartItemMetaData": {
+            "quantity": {
+              "value": 1
+            },
+            "serviceAbilityInfo": {
+              "coreServices": [
+                {
+                  "applicableOn": {
+                    "type": "orderFulfillment",
+                    "value": "REGULAR"
+                  },
+                  "basedOnInfo": [
+                    {
+                      "value": "560034",
+                      "type": "pin"
+                    }
+                  ],
+                  "serviceDetails": {
+                    "serviceNameEnum": "NORMAL_DELIVERY",
+                    "serviceable": true,
+                    "hasOutstandingPurchaseLimit": false,
+                    "outstandingPurchaseLimit": 0,
+                    "serviceCharges": {
+                      "serviceChargeMap": {
+                        "SHIPPING_CHARGE": 0,
+                        "OCTROI_CHARGE": 0
+                      },
+                      "serviceChargesMap": {
+                        "SHIPPING_CHARGE": {
+                          "amount": 40,
+                          "benefits": [
+                            {
+                              "type": "FREESHIP",
+                              "discountAmount": 40,
+                              "id": "sr:d:0001",
+                              "message": "Free shipping",
+                              "reason": "BAU_RULE"
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    "errorCode": null,
+                    "errorMsg": null,
+                    "serviceabilityTags": [],
+                    "deliverySla": {
+                      "minSla": 3,
+                      "maxSla": 3,
+                      "internalSla": 0,
+                      "sla": 3,
+                      "speed": "REGULAR",
+                      "serviceabilityHolidays": null,
+                      "deliveryInfo": {
+                        "dispatchDateTime": 1532111399000,
+                        "deliveryDateTime": 1532111399000,
+                        "prepaidDeliveryDateTime": 1532111399000,
+                        "postpaidDeliveryDateTime": 1532111399000,
+                        "promiseAfterDateTime": 1532111399000,
+                        "cutoffDateTime": 1531924800000,
+                        "showRange": false,
+                        "benefits": null,
+                        "dispatchDate": "2018-07-20T23:59:59.000+05:30",
+                        "deliveryDate": "2018-07-20T23:59:59.000+05:30",
+                        "promiseAfterDate": "2018-07-20T23:59:59.000+05:30",
+                        "cutoffDate": "2018-07-18T20:10:00.000+05:30",
+                        "releaseDate": null
+                      },
+                      "selectedPickUpDetails": null,
+                      "dataBag": {
+                        "sla": 0,
+                        "shipmentMovementType": null,
+                        "cost": 0,
+                        "available": false,
+                        "slotRefId": null,
+                        "sourceRefId": null,
+                        "tags": null,
+                        "sourceEpst": null,
+                        "sourceLpst": null,
+                        "endTime": null,
+                        "startTime": null,
+                        "bookingRefId": null,
+                        "naReason": null,
+                        "dplusiGuaranteed": false,
+                        "dplusiEligible": false
+                      },
+                      "scPreferred": null
+                    },
+                    "pickUpOptions": {},
+                    "slots": [],
+                    "promiseType": "UN_SLOTTED",
+                    "useDefaultSlot": false,
+                    "slotCost": 0,
+                    "maxQuantity": 0,
+                    "defaultPromise": true
+                  },
+                  "postOrderServices": []
+                }
+              ],
+              "addOnServices": [
+                {
+                  "applicableOn": {
+                    "type": "paymentMode",
+                    "value": "prepaid"
+                  },
+                  "basedOnInfo": [
+                    {
+                      "value": "560034",
+                      "type": "pin"
+                    }
+                  ],
+                  "serviceDetails": {
+                    "serviceNameEnum": "PAYMENT_PREPAID_SERVICEABILITY",
+                    "serviceable": true,
+                    "hasOutstandingPurchaseLimit": false,
+                    "outstandingPurchaseLimit": 0,
+                    "serviceCharges": null,
+                    "errorCode": null,
+                    "errorMsg": null,
+                    "serviceabilityTags": null,
+                    "deliverySla": null,
+                    "pickUpOptions": {},
+                    "slots": [],
+                    "promiseType": null,
+                    "useDefaultSlot": false,
+                    "slotCost": 0,
+                    "maxQuantity": 0,
+                    "defaultPromise": false
+                  },
+                  "postOrderServices": null
+                },
+                {
+                  "applicableOn": {
+                    "type": "paymentMode",
+                    "value": "cod"
+                  },
+                  "basedOnInfo": [
+                    {
+                      "value": "560034",
+                      "type": "pin"
+                    }
+                  ],
+                  "serviceDetails": {
+                    "serviceNameEnum": "PAYMENT_POSTPAID_SERVICEABILITY",
+                    "serviceable": true,
+                    "hasOutstandingPurchaseLimit": false,
+                    "outstandingPurchaseLimit": 0,
+                    "serviceCharges": null,
+                    "errorCode": null,
+                    "errorMsg": null,
+                    "serviceabilityTags": null,
+                    "deliverySla": null,
+                    "pickUpOptions": {},
+                    "slots": [],
+                    "promiseType": null,
+                    "useDefaultSlot": false,
+                    "slotCost": 0,
+                    "maxQuantity": 0,
+                    "defaultPromise": false
+                  },
+                  "postOrderServices": null
+                }
+              ],
+              "metaData": {
+                "metaTags": [],
+                "metaMessages": [],
+                "reservationInfo": null,
+                "promised": true,
+                "slotsAvailable": false
+              }
+            },
+            "disbursalItemResponse": {
+              "freebieList": [],
+              "offers": [
+                {
+                  "offerId": "nb:mp:060ab78305",
+                  "basedOn": "OFFER",
+                  "applicableOn": "ITEM",
+                  "giveAwayType": "DISCOUNT",
+                  "disbursalNetAdjustmentDetails": {
+                    "adjustmentName": "PROMOTIONAL_DISCOUNT",
+                    "disbursalType": "DISCOUNT",
+                    "disbursalAmount": {
+                      "value": 0
+                    },
+                    "adjustmentGranularityLevel": null,
+                    "disbursalCalculationType": null,
+                    "disbursalAdjustmentMetaData": null,
+                    "chargesApplicable": [],
+                    "freebieApplicable": []
+                  },
+                  "offerMetaData": {
+                    "offerMetaDataEnumObjectMap": {
+                      "offerMetadata": {
+                        "giveAwayType": "discount",
+                        "adjustmentType": "PROMOTION_DISCOUNT",
+                        "applicableOnType": "product",
+                        "promotionVersion": "1531421938625",
+                        "basedOn": "none"
+                      }
+                    },
+                    "pzOfferId": null,
+                    "offerLabel": null,
+                    "paymentTriggerEnum": "ANY",
+                    "disbursalApplicationMetaData": null,
+                    "promotionVersion": "1531421938625",
+                    "marketPlace": [
+                      "FLIPKART"
+                    ],
+                    "giveAwayType": "discount",
+                    "basedOn": "none",
+                    "applicableOnType": "product",
+                    "adjustmentType": "PROMOTION_DISCOUNT",
+                    "sourceId": null
+                  },
+                  "discountAmount": 0,
+                  "offerMessage": {
+                    "text": {
+                      "small": "Jio:₹2200 Cashback, Recharge Rs198 or 299/m",
+                      "medium": "Jio : get ₹2200 cashback, Recharge with Rs198/299 Per month",
+                      "large": "Jio : get ₹2200 cashback, Recharge with Rs198/299 Per month"
+                    },
+                    "tnc": {
+                      "displayText": "Know More",
+                      "link": null,
+                      "required": true,
+                      "trackingId": null
+                    },
+                    "cta": null,
+                    "messageType": null
+                  },
+                  "message": "Jio:₹2200 Cashback, Recharge Rs198 or 299/m",
+                  "conditional": false
+                },
+                {
+                  "offerId": "nb:mp:0004a72805",
+                  "basedOn": "OFFER",
+                  "applicableOn": "ITEM",
+                  "giveAwayType": "DISCOUNT",
+                  "disbursalNetAdjustmentDetails": {
+                    "adjustmentName": "PROMOTIONAL_DISCOUNT",
+                    "disbursalType": "DISCOUNT",
+                    "disbursalAmount": {
+                      "value": 3000
+                    },
+                    "adjustmentGranularityLevel": null,
+                    "disbursalCalculationType": null,
+                    "disbursalAdjustmentMetaData": null,
+                    "chargesApplicable": [],
+                    "freebieApplicable": []
+                  },
+                  "offerMetaData": {
+                    "offerMetaDataEnumObjectMap": {
+                      "offerMetadata": {
+                        "giveAwayType": "discount",
+                        "adjustmentType": "PROMOTION_DISCOUNT",
+                        "applicableOnType": "product",
+                        "promotionVersion": "1531421931535",
+                        "basedOn": "none"
+                      }
+                    },
+                    "pzOfferId": null,
+                    "offerLabel": null,
+                    "paymentTriggerEnum": "ANY",
+                    "disbursalApplicationMetaData": null,
+                    "promotionVersion": "1531421931535",
+                    "marketPlace": [
+                      "FLIPKART"
+                    ],
+                    "giveAwayType": "discount",
+                    "basedOn": "none",
+                    "applicableOnType": "product",
+                    "adjustmentType": "PROMOTION_DISCOUNT",
+                    "sourceId": null
+                  },
+                  "discountAmount": 3000,
+                  "offerMessage": {
+                    "text": {
+                      "small": "Get extra ₹3000 off (included)",
+                      "medium": "Get extra ₹3000 off (price inclusive of discount)",
+                      "large": "Get extra ₹3000 off (price inclusive of discount)"
+                    },
+                    "tnc": {
+                      "displayText": "T&C",
+                      "link": null,
+                      "required": true,
+                      "trackingId": null
+                    },
+                    "cta": null,
+                    "messageType": null
+                  },
+                  "message": "Get extra ₹3000 off (included)",
+                  "conditional": false
+                },
+                {
+                  "offerId": "ns:06c32b9702",
+                  "basedOn": "OFFER",
+                  "applicableOn": "BASKET",
+                  "giveAwayType": "DISCOUNT",
+                  "disbursalNetAdjustmentDetails": {
+                    "adjustmentName": "PROMOTIONAL_DISCOUNT",
+                    "disbursalType": "DISCOUNT",
+                    "disbursalAmount": {
+                      "value": 0
+                    },
+                    "adjustmentGranularityLevel": null,
+                    "disbursalCalculationType": null,
+                    "disbursalAdjustmentMetaData": null,
+                    "chargesApplicable": [],
+                    "freebieApplicable": []
+                  },
+                  "offerMetaData": {
+                    "offerMetaDataEnumObjectMap": {
+                      "offerMetadata": {
+                        "giveAwayType": "discount",
+                        "adjustmentType": "PROMOTION_DISCOUNT",
+                        "applicableOnType": "basket",
+                        "promotionVersion": "1531421968207",
+                        "basedOn": "pbo"
+                      }
+                    },
+                    "pzOfferId": "PZA180702987746",
+                    "offerLabel": null,
+                    "paymentTriggerEnum": "NBFC",
+                    "disbursalApplicationMetaData": null,
+                    "promotionVersion": "1531421968207",
+                    "marketPlace": [],
+                    "giveAwayType": "discount",
+                    "basedOn": "pbo",
+                    "applicableOnType": "basket",
+                    "adjustmentType": "PROMOTION_DISCOUNT",
+                    "sourceId": null
+                  },
+                  "discountAmount": 0,
+                  "offerMessage": {
+                    "text": {
+                      "small": "No Cost EMI on Bajaj Finserv EMI Card",
+                      "medium": "No Cost EMI on Bajaj Finserv EMI Card on cart value above ₹4499",
+                      "large": "No Cost EMI on Bajaj Finserv EMI Card on cart value above ₹4499"
+                    },
+                    "tnc": {
+                      "displayText": "T&C",
+                      "link": null,
+                      "required": true,
+                      "trackingId": null
+                    },
+                    "cta": null,
+                    "messageType": null
+                  },
+                  "message": "No Cost EMI on Bajaj Finserv EMI Card",
+                  "conditional": true
+                },
+                {
+                  "offerId": "nb:mp:061b802302",
+                  "basedOn": "OFFER",
+                  "applicableOn": "BASKET",
+                  "giveAwayType": "DISCOUNT",
+                  "disbursalNetAdjustmentDetails": {
+                    "adjustmentName": "PROMOTIONAL_DISCOUNT",
+                    "disbursalType": "DISCOUNT",
+                    "disbursalAmount": {
+                      "value": 0
+                    },
+                    "adjustmentGranularityLevel": null,
+                    "disbursalCalculationType": null,
+                    "disbursalAdjustmentMetaData": null,
+                    "chargesApplicable": [],
+                    "freebieApplicable": []
+                  },
+                  "offerMetaData": {
+                    "offerMetaDataEnumObjectMap": {
+                      "offerMetadata": {
+                        "giveAwayType": "discount",
+                        "adjustmentType": "PROMOTION_DISCOUNT",
+                        "applicableOnType": "basket",
+                        "promotionVersion": "1531421938643",
+                        "basedOn": "pbo"
+                      }
+                    },
+                    "pzOfferId": "PZA180702225395",
+                    "offerLabel": null,
+                    "paymentTriggerEnum": "BANK",
+                    "disbursalApplicationMetaData": null,
+                    "promotionVersion": "1531421938643",
+                    "marketPlace": [],
+                    "giveAwayType": "discount",
+                    "basedOn": "pbo",
+                    "applicableOnType": "basket",
+                    "adjustmentType": "PROMOTION_DISCOUNT",
+                    "sourceId": null
+                  },
+                  "discountAmount": 0,
+                  "offerMessage": {
+                    "text": {
+                      "small": "Extra 5% off* with Axis Bank Buzz Credit Card",
+                      "medium": "Extra 5% off* with Axis Bank Buzz Credit Card",
+                      "large": "Extra 5% off* with Axis Bank Buzz Credit Card"
+                    },
+                    "tnc": {
+                      "displayText": "T&C",
+                      "link": null,
+                      "required": true,
+                      "trackingId": null
+                    },
+                    "cta": null,
+                    "messageType": null
+                  },
+                  "message": "Extra 5% off* with Axis Bank Buzz Credit Card",
+                  "conditional": true
+                },
+                {
+                  "offerId": "nb:mp:06ad06f313",
+                  "basedOn": "OFFER",
+                  "applicableOn": "BASKET",
+                  "giveAwayType": "DISCOUNT",
+                  "disbursalNetAdjustmentDetails": {
+                    "adjustmentName": "PROMOTIONAL_DISCOUNT",
+                    "disbursalType": "DISCOUNT",
+                    "disbursalAmount": {
+                      "value": 0
+                    },
+                    "adjustmentGranularityLevel": null,
+                    "disbursalCalculationType": null,
+                    "disbursalAdjustmentMetaData": null,
+                    "chargesApplicable": [],
+                    "freebieApplicable": []
+                  },
+                  "offerMetaData": {
+                    "offerMetaDataEnumObjectMap": {
+                      "offerMetadata": {
+                        "giveAwayType": "discount",
+                        "adjustmentType": "PROMOTION_DISCOUNT",
+                        "applicableOnType": "basket",
+                        "promotionVersion": "1531737003278",
+                        "basedOn": "pbo"
+                      }
+                    },
+                    "pzOfferId": "PZA180713397372",
+                    "offerLabel": null,
+                    "paymentTriggerEnum": "BANK",
+                    "disbursalApplicationMetaData": null,
+                    "promotionVersion": "1531737003278",
+                    "marketPlace": [
+                      "FLIPKART",
+                      "GROCERY"
+                    ],
+                    "giveAwayType": "discount",
+                    "basedOn": "pbo",
+                    "applicableOnType": "basket",
+                    "adjustmentType": "PROMOTION_DISCOUNT",
+                    "sourceId": null
+                  },
+                  "discountAmount": 0,
+                  "offerMessage": {
+                    "text": {
+                      "small": "10% Instant Discount on SBI Credit Cards",
+                      "medium": "10% Instant Discount on SBI Credit Cards",
+                      "large": "10% Instant Discount on SBI Credit Cards"
+                    },
+                    "tnc": {
+                      "displayText": "T&C",
+                      "link": null,
+                      "required": true,
+                      "trackingId": null
+                    },
+                    "cta": null,
+                    "messageType": null
+                  },
+                  "message": "10% Instant Discount on SBI Credit Cards",
+                  "conditional": true
+                }
+              ],
+              "warningMessages": [],
+              "disbursalItemMetaData": {
+                "cancellationIds": null,
+                "shipGroupId": null,
+                "cancellationId": null,
+                "userAction": null,
+                "basketAction": null,
+                "basketEntryAction": null,
+                "pickUpCharge": 0,
+                "returnGroupId": null,
+                "returnPolicyId": null,
+                "effectiveDiscount": 3000,
+                "otherInfo": {}
+              },
+              "itemOfferMessages": [
+                {
+                  "text": {
+                    "small": "No Cost EMI on Bajaj Finserv EMI Card",
+                    "medium": "No Cost EMI on Bajaj Finserv EMI Card on cart value above ₹4499",
+                    "large": "No Cost EMI on Bajaj Finserv EMI Card on cart value above ₹4499"
+                  },
+                  "tnc": {
+                    "displayText": "T&C",
+                    "link": null,
+                    "required": true,
+                    "trackingId": null
+                  },
+                  "cta": null,
+                  "messageType": "CONDITIONAL"
+                },
+                {
+                  "text": {
+                    "small": "10% Instant Discount on SBI Credit Cards",
+                    "medium": "10% Instant Discount on SBI Credit Cards",
+                    "large": "10% Instant Discount on SBI Credit Cards"
+                  },
+                  "tnc": {
+                    "displayText": "T&C",
+                    "link": null,
+                    "required": true,
+                    "trackingId": null
+                  },
+                  "cta": null,
+                  "messageType": "CONDITIONAL"
+                },
+                {
+                  "text": {
+                    "small": "Extra 5% off* with Axis Bank Buzz Credit Card",
+                    "medium": "Extra 5% off* with Axis Bank Buzz Credit Card",
+                    "large": "Extra 5% off* with Axis Bank Buzz Credit Card"
+                  },
+                  "tnc": {
+                    "displayText": "T&C",
+                    "link": null,
+                    "required": true,
+                    "trackingId": null
+                  },
+                  "cta": null,
+                  "messageType": "CONDITIONAL"
+                }
+              ],
+              "freebieItemRefIds": []
+            },
+            "freebieSummary": null,
+            "exchangeContext": null,
+            "fulfilmentInfo": null,
+            "servicesSelected": {
+              "TIER": {
+                "type": "TIER",
+                "value": "normalDelivery",
+                "gwInfo": null,
+                "updatedBy": "SYSTEM",
+                "slot": null
+              }
+            },
+            "minimalItemInfo": {
+              "title": "Honor 9 Lite (Glacier Grey, 32 GB)",
+              "url": "/honor-9-lite-glacier-grey-32-gb/p/itmff5zgdeckztpk?pid=MOBFF5ZGTY7JHSDH",
+              "imageUrl": "http://img.fkcdn.com/image/100/100/jcp4b680/mobile/z/d/b/honor-9-lite-lld-al10-original-imaffh2qdpanuhp9.jpeg",
+              "vertical": "mobile"
+            },
+            "statusResponse": {
+              "statusCode": "VALID",
+              "itemState": "BUYABLE",
+              "message": "This item is valid"
+            },
+            "itemAdjustment": {
+              "quantity": 1,
+              "itemAdjustmentList": [
+                {
+                  "adjustmentType": "PROMOTION_DISCOUNT",
+                  "adjustmentImpact": "NEGATIVE",
+                  "adjustmentFormat": "FIXED",
+                  "message": "Get extra ₹3000 off (included)",
+                  "sourceType": "OFFERS",
+                  "sourceRef": "PROMOTION_DISCOUNT-nb:mp:0004a72805-LSTMOBFF5ZGTY7JHSDHE06MDN:ACHWI93X4WDG2JDGRBYCE54ORG7M174S:P:A-0001:U:SPCMS",
+                  "offerId": "nb:mp:0004a72805",
+                  "netApplicableAmount": 3000,
+                  "unitApplicableAmount": 3000
+                }
+              ],
+              "groupAdjustmentIds": [
+                "MpHnz3fsoZ"
+              ],
+              "unitSellingPrice": 13999,
+              "itemSellingPrice": 13999
+            },
+            "dependentSvcVersion": {
+              "Pricing": "5000000325"
+            },
+            "productInfoAttributes": {
+              "SellerId": "c82e1fb314f34969"
+            },
+            "reservationInfo": null,
+            "attachMetadata": {
+              "showAttach": true,
+              "attachRestrictionReason": "NOT_APPLICABLE"
+            },
+            "serviceabilityGroupId": null,
+            "servicesSelectedList": [
+              {
+                "type": "TIER",
+                "value": "normalDelivery",
+                "gwInfo": null,
+                "updatedBy": "SYSTEM",
+                "slot": null
+              }
+            ]
+          },
+          "parentContext": null,
+          "parentCartItemId": null,
+          "marketPlaceId": "FLIPKART"
+        }
+      ],
+      "marketPlaceMetaData": {
+        "serviceAbilityInfo": null,
+        "servicesSelected": null,
+        "marketPlaceAdjustments": null,
+        "offerD2RMessage": null,
+        "d2RMessage": null,
+        "shippingD2R": {},
+        "minimumBuyabilityInfoOptional": null,
+        "marketPlaceServiceable": true
+      }
+    }
+  ],
+  "cartMetaData": {
+    "userDemographics": {
+      "shippingPincode": "560034",
+      "ipAddress": "115.110.204.62",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 Safari/537.36",
+      "fulfillmentData": null
+    },
+    "userInfo": null,
+    "sourceCartInfo": null,
+    "offersD2r": null,
+    "pzDataBag": {
+      "pboOfferDetails": [
+        {
+          "offer_id": "PZA180702225395",
+          "offer_unit_price": 1197900,
+          "metadata": {
+            "paymentSystem": "BANK",
+            "offerId": "nb:mp:061b802302",
+            "discountType": "INSTANT"
+          }
+        },
+        {
+          "offer_id": "PZA180702631228",
+          "offer_unit_price": 98000,
+          "metadata": {
+            "paymentSystem": "NBFC",
+            "offerId": "ns:068fa14a02",
+            "discountType": "INSTANT"
+          }
+        },
+        {
+          "offer_id": "PZA180713397372",
+          "offer_unit_price": 1197900,
+          "metadata": {
+            "paymentSystem": "BANK",
+            "offerId": "nb:mp:06ad06f313",
+            "discountType": "INSTANT"
+          }
+        },
+        {
+          "offer_id": "PZA180702987746",
+          "offer_unit_price": 1099900,
+          "metadata": {
+            "paymentSystem": "NBFC",
+            "offerId": "ns:06c32b9702",
+            "discountType": "INSTANT"
+          }
+        }
+      ]
+    },
+    "offersCritical": false,
+    "serviceAbilityInfo": {
+      "coreServices": [],
+      "addOnServices": [],
+      "metaData": {
+        "metaTags": [],
+        "metaMessages": [],
+        "reservationInfo": null,
+        "promised": null,
+        "slotsAvailable": false
+      }
+    },
+    "servicesSelected": null,
+    "cartLevelAdjustments": [],
+    "groupAdjustmentsMap": {
+      "ZpQ6XXE0cU": {
+        "adjustmentList": [
+          {
+            "adjustmentType": "SHIPPING_CHARGE",
+            "adjustmentImpact": "POSITIVE",
+            "adjustmentFormat": "FIXED",
+            "message": null,
+            "sourceType": "SERVICEABILITY",
+            "sourceRef": "SHIPPING_CHARGE-ZpQ6XXE0cU",
+            "offerId": null,
+            "netApplicableAmount": 50,
+            "unitApplicableAmount": 50
+          }
+        ]
+      },
+      "MpHnz3fsoZ": {
+        "adjustmentList": [
+          {
+            "adjustmentType": "SHIPPING_CHARGE",
+            "adjustmentImpact": "POSITIVE",
+            "adjustmentFormat": "FIXED",
+            "message": null,
+            "sourceType": "SERVICEABILITY",
+            "sourceRef": "SHIPPING_CHARGE-MpHnz3fsoZ",
+            "offerId": null,
+            "netApplicableAmount": 40,
+            "unitApplicableAmount": 40
+          },
+          {
+            "adjustmentType": "DISCOUNTED_SHIPPING",
+            "adjustmentImpact": "NEGATIVE",
+            "adjustmentFormat": "FIXED",
+            "message": null,
+            "sourceType": "SERVICEABILITY",
+            "sourceRef": "DISCOUNTED_SHIPPING-MpHnz3fsoZ",
+            "offerId": "sr:d:0001",
+            "netApplicableAmount": 40,
+            "unitApplicableAmount": 40
+          }
+        ]
+      }
+    },
+    "policyAppliedList": [],
+    "shippingPinCode": "560034",
+    "registeredFFCustomer": false,
+    "servicesSelectedList": []
+  },
+  "domainName": "FLIPKART"
+}

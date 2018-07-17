@@ -1,0 +1,21 @@
+syntax = "proto3";
+option java_package = "cart.client.v2.datamodels";
+option java_multiple_files = true;
+package cart.client.v2.datamodels;
+import "cart/client/v2/datamodels/MinimumBuyabilityInfo.proto";
+import "cart/client/endpoints/common/meta/cart/ListingTier.proto";
+import "cart/client/modules/serviceability/ServiceAbilityInfo.proto";
+import "cart/client/endpoints/common/meta/cart/D2Rvalue.proto";
+import "cart/client/modules/disbursal/response/OfferMessage.proto";
+message MarketPlaceMetaData {
+	.cart.client.modules.serviceability.ServiceAbilityInfo serviceAbilityInfo=1;
+	.cart.client.v2.datamodels.MinimumBuyabilityInfo minimumBuyabilityInfo=3;
+	bool isMarketPlaceServiceable=4;
+	.cart.client.modules.disbursal.response.OfferMessage offerD2RMessage=6;
+	string d2RMessage=7;
+	message shippingD2REntry {
+		.cart.client.endpoints.common.meta.cart.ListingTier key=1;
+		.cart.client.endpoints.common.meta.cart.D2Rvalue value=2;
+	}
+	repeated shippingD2REntry shippingD2R=8;
+}

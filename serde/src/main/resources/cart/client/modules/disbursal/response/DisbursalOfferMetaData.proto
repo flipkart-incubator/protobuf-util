@@ -1,0 +1,30 @@
+syntax = "proto3";
+option java_package = "cart.client.modules.disbursal.response";
+option java_multiple_files = true;
+package cart.client.modules.disbursal.response;
+import "cart/client/modules/disbursal/response/DisbursalApplicationMetaData.proto";
+import "cart/client/modules/disbursal/response/GiveAwayType.proto";
+import "google/protobuf/any.proto";
+import "cart/client/modules/disbursal/response/OfferAdjustmentType.proto";
+import "cart/client/modules/disbursal/response/BasedOn.proto";
+import "cart/client/v2/datamodels/MarketPlace.proto";
+import "cart/client/modules/disbursal/response/ApplicableOnType.proto";
+import "cart/client/modules/disbursal/enums/OfferPaymentTriggerEnum.proto";
+message DisbursalOfferMetaData {
+	message offerMetaDataEnumObjectMapEntry {
+		string key=1;
+		.google.protobuf.Any value=2;
+	}
+	repeated offerMetaDataEnumObjectMapEntry offerMetaDataEnumObjectMap=1;
+	string pzOfferId=2;
+	string offerLabel=3;
+	.cart.client.modules.disbursal.enums.OfferPaymentTriggerEnum paymentTriggerEnum=4;
+	.cart.client.modules.disbursal.response.DisbursalApplicationMetaData disbursalApplicationMetaData=5;
+	string promotionVersion=6;
+	repeated .cart.client.v2.datamodels.MarketPlace marketPlace=7;
+	.cart.client.modules.disbursal.response.GiveAwayType giveAwayType=8;
+	.cart.client.modules.disbursal.response.BasedOn basedOn=9;
+	.cart.client.modules.disbursal.response.ApplicableOnType applicableOnType=10;
+	.cart.client.modules.disbursal.response.OfferAdjustmentType adjustmentType=11;
+	string sourceId=12;
+}

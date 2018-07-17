@@ -1,0 +1,14 @@
+syntax = "proto3";
+option java_package = "cart.client.modules.distancetoredemption";
+option java_multiple_files = true;
+package cart.client.modules.distancetoredemption;
+import "cart/client/modules/distancetoredemption/D2RSource.proto";
+import "cart/client/modules/distancetoredemption/ProductContext.proto";
+message D2RItemResponse {
+	.cart.client.modules.distancetoredemption.D2RSource source=1;
+	.cart.client.modules.distancetoredemption.ProductContext productContext=2;
+	string caseType=3;
+	string displayText=4;
+	string promotionId=5;
+	string promotionPageURL=6;
+}

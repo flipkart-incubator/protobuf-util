@@ -1,0 +1,22 @@
+syntax = "proto3";
+option java_package = "cart.client.modules.disbursal.response";
+option java_multiple_files = true;
+package cart.client.modules.disbursal.response;
+import "cart/client/modules/disbursal/response/DisbursalNetAdjustmentDetails.proto";
+import "cart/client/modules/disbursal/enums/DisbursalGiveAwayTypeEnum.proto";
+import "cart/client/modules/disbursal/enums/DisbursalBasedOnEnum.proto";
+import "cart/client/modules/disbursal/response/DisbursalOfferMetaData.proto";
+import "cart/client/modules/disbursal/response/OfferMessage.proto";
+import "cart/client/modules/disbursal/enums/DisbursalApplicableOnEnum.proto";
+message DisbursalOffer {
+	string offerId=1;
+	.cart.client.modules.disbursal.enums.DisbursalBasedOnEnum basedOn=2;
+	.cart.client.modules.disbursal.enums.DisbursalApplicableOnEnum applicableOn=3;
+	.cart.client.modules.disbursal.enums.DisbursalGiveAwayTypeEnum giveAwayType=4;
+	bool isConditional=5;
+	.cart.client.modules.disbursal.response.DisbursalNetAdjustmentDetails disbursalNetAdjustmentDetails=6;
+	.cart.client.modules.disbursal.response.DisbursalOfferMetaData offerMetaData=7;
+	double discountAmount=8;
+	.cart.client.modules.disbursal.response.OfferMessage offerMessage=9;
+	string message=10;
+}

@@ -24,7 +24,6 @@ hs_err_pid*
 .idea/
 */*.iml
 */target
-pom.xml
 *.iml
 .DS_Store
 */.DS_Store

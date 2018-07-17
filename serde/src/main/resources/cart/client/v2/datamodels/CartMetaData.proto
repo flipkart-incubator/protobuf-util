@@ -1,0 +1,29 @@
+syntax = "proto3";
+option java_package = "cart.client.v2.datamodels";
+option java_multiple_files = true;
+package cart.client.v2.datamodels;
+import "cart/client/endpoints/common/meta/cart/UserInfo.proto";
+import "cart/client/modules/adjustments/GroupAdjustment.proto";
+import "cart/client/modules/adjustments/Adjustment.proto";
+import "cart/client/endpoints/common/meta/cart/SourceCartInfo.proto";
+import "cart/client/modules/serviceability/ServiceAbilityInfo.proto";
+import "cart/client/endpoints/common/meta/cart/UserDemographics.proto";
+import "cart/client/modules/disbursal/PZDataBag.proto";
+import "cart/client/datamodels/PolicyApplied.proto";
+message CartMetaData {
+	.cart.client.endpoints.common.meta.cart.UserDemographics userDemographics=1;
+	.cart.client.endpoints.common.meta.cart.UserInfo userInfo=2;
+	bool isRegisteredFFCustomer=3;
+	.cart.client.endpoints.common.meta.cart.SourceCartInfo sourceCartInfo=4;
+	.cart.client.modules.disbursal.PZDataBag pzDataBag=6;
+	bool offersCritical=7;
+	.cart.client.modules.serviceability.ServiceAbilityInfo serviceAbilityInfo=8;
+	repeated .cart.client.modules.adjustments.Adjustment cartLevelAdjustments=10;
+	message groupAdjustmentsMapEntry {
+		string key=1;
+		.cart.client.modules.adjustments.GroupAdjustment value=2;
+	}
+	repeated groupAdjustmentsMapEntry groupAdjustmentsMap=11;
+	repeated .cart.client.datamodels.PolicyApplied policyAppliedList=12;
+	string shippingPinCode=13;
+}

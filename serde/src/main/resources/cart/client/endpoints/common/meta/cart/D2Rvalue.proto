@@ -1,0 +1,8 @@
+syntax = "proto3";
+option java_package = "cart.client.endpoints.common.meta.cart";
+option java_multiple_files = true;
+package cart.client.endpoints.common.meta.cart;
+message D2Rvalue {
+	int32 threshold=1;
+	int32 distance=2;
+}

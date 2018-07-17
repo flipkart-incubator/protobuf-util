@@ -1,0 +1,11 @@
+syntax = "proto3";
+option java_package = "cart.client.endpoints.common.meta.cart";
+option java_multiple_files = true;
+package cart.client.endpoints.common.meta.cart;
+import "cart/client/endpoints/common/meta/cart/FulfillmentData.proto";
+message UserDemographics {
+	string shippingPincode=1;
+	string ipAddress=2;
+	string userAgent=3;
+	.cart.client.endpoints.common.meta.cart.FulfillmentData fulfillmentData=4;
+}

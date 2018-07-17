@@ -31,15 +31,25 @@
 
 package com.flipkart.protobuf.ext;
 
-import org.openjdk.jmh.annotations.Benchmark;
+import com.flipkart.protobuf.ext.serde.json.JacksonSerDeUtil;
+import org.openjdk.jmh.annotations.*;
 
+import java.io.IOException;
 import java.util.HashMap;
 
-public class MyBenchmark {
+public class MyJsonBenchmark {
 
-    @Benchmark
-    public void testMethod() {
-        new HashMap<>();
-    }
+	@State(value = Scope.Benchmark)
+	public static class MyState {
+		public String jsonFilePath = "/Users/gaurav.prasad/gitCurrent/fk-github/protobuf-util/benchmark/src/main/resources/json/cart_response.txt";
+		public JacksonSerDeUtil jacksonSerDeUtil = new JacksonSerDeUtil(jsonFilePath);
+
+	}
+
+
+	@Benchmark
+	public void myJsonBenchmark(MyState myState) throws Exception {
+		myState.jacksonSerDeUtil.deserialize();
+	}
 
 }
