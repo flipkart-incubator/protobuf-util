@@ -1,8 +1,0 @@
-syntax = "proto3";
-option java_package = "cart.client.modules.benefit";
-option java_multiple_files = true;
-package cart.client.modules.benefit;
-enum Type {
-	FREESHIP=0;
-	PRIORITYSHIP=1;
-}

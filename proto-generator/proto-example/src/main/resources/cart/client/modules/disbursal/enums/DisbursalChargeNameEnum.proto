@@ -1,7 +1,0 @@
-syntax = "proto3";
-option java_package = "cart.client.modules.disbursal.enums";
-option java_multiple_files = true;
-package cart.client.modules.disbursal.enums;
-enum DisbursalChargeNameEnum {
-	PICKUP_CHARGE=0;
-}

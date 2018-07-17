@@ -1,8 +1,0 @@
-syntax = "proto3";
-option java_package = "cart.client.modules.serviceability";
-option java_multiple_files = true;
-package cart.client.modules.serviceability;
-message BasedOnInfo {
-	string type=1;
-	string value=2;
-}

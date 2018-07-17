@@ -1,9 +1,0 @@
-syntax = "proto3";
-option java_package = "cart.client.modules.serviceability";
-option java_multiple_files = true;
-package cart.client.modules.serviceability;
-enum PromiseType {
-	SLOTTED=0;
-	UN_SLOTTED=1;
-	FUTURE_SLOTTED=2;
-}

@@ -1,9 +1,0 @@
-syntax = "proto3";
-option java_package = "cart.client.modules.disbursal.response";
-option java_multiple_files = true;
-package cart.client.modules.disbursal.response;
-message DisbursalFreebieDetails {
-	string listingId=1;
-	string summary=2;
-	int32 quantity=3;
-}

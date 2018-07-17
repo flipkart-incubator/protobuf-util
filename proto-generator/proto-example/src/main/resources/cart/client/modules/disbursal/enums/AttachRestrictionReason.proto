@@ -1,9 +1,0 @@
-syntax = "proto3";
-option java_package = "cart.client.modules.disbursal.enums";
-option java_multiple_files = true;
-package cart.client.modules.disbursal.enums;
-enum AttachRestrictionReason {
-	NOT_APPLICABLE=0;
-	VAS=1;
-	SINGLE_PRODUCT_OFFER=2;
-}

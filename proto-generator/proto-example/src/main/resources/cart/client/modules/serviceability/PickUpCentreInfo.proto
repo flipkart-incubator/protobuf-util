@@ -1,9 +1,0 @@
-syntax = "proto3";
-option java_package = "cart.client.modules.serviceability";
-option java_multiple_files = true;
-package cart.client.modules.serviceability;
-import "google/protobuf/timestamp.proto";
-message PickUpCentreInfo {
-	.google.protobuf.Timestamp pickUpStartDateTime=1;
-	.google.protobuf.Timestamp pickUpEndDateTime=2;
-}

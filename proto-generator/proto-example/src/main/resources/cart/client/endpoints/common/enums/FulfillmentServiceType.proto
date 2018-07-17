@@ -1,7 +1,0 @@
-syntax = "proto3";
-option java_package = "cart.client.endpoints.common.enums";
-option java_multiple_files = true;
-package cart.client.endpoints.common.enums;
-enum FulfillmentServiceType {
-	SHIPPING_ADDRESS_ID=0;
-}

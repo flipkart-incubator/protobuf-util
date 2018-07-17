@@ -1,9 +1,0 @@
-syntax = "proto3";
-option java_package = "com.flipkart.lockin.enums";
-option java_multiple_files = true;
-package com.flipkart.lockin.enums;
-enum MembershipStatus {
-	ACTIVE=0;
-	ACTIVATE_ELIGIBLE=1;
-	INACTIVE=2;
-}

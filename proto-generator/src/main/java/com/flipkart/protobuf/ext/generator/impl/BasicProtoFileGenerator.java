@@ -82,6 +82,7 @@ public class BasicProtoFileGenerator implements IProtoFileGenerator {
 	private void getProtobufEquivalent(Class tclass, Queue<Pair<String, StringBuilder>> queue, HashMap<String, String> typeMap, int tabIndent) {
 		StringBuilder builder = new StringBuilder("syntax = \"proto3\";").append(NEW_LINE);
 		String packageName = tclass.getPackage().getName();
+//		String packageName = tclass.getCanonicalName().substring(0, tclass.getCanonicalName().lastIndexOf("."));
 		builder.append("option java_package = ").append("\"").append(packageName).append("\";").append(NEW_LINE);
 		builder.append("option java_multiple_files = true;").append(NEW_LINE);
 		builder.append("package ").append(packageName).append(SEMI_COLON).append(NEW_LINE);
@@ -184,8 +185,8 @@ public class BasicProtoFileGenerator implements IProtoFileGenerator {
 	}
 
 	private void addFieldLine(StringBuilder sb, String typeName, int tabIndent, String label, int fieldNumber, boolean repeated) {
-		if(typeName.contains(".")){
-			typeName="." + typeName;
+		if (typeName.contains(".")) {
+			typeName = "." + typeName;
 		}
 		sb.append(getTabs(tabIndent)).append(repeated ? REPEATED + SPACE : "").append(typeName).append(SPACE).append(label).append(EQUAL).append(fieldNumber).append(SEMI_COLON).append(NEW_LINE);
 	}
