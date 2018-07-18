@@ -1,4 +1,4 @@
-package com.flipkart.protobuf.ext;
+package com.flipkart.protobuf.ext.proto;
 
 import com.flipkart.protobuf.ext.serde.proto.CartInfoSample;
 import com.flipkart.protobuf.ext.serde.proto.ProtoSerDeUtil;
@@ -13,7 +13,7 @@ public class MyProtoBenchmark {
 		public ProtoSerDeUtil protoSerDeUtil = new ProtoSerDeUtil();
 	}
 
-	@Benchmark
+	//@Benchmark
 	public void myProtoBenchmark(MyState myState) throws Exception {
 		myState.protoSerDeUtil.serialize(myState.cartInfoSample.getSampleCartInfo());
 	}

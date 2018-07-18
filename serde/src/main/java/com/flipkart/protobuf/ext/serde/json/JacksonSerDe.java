@@ -8,6 +8,9 @@ import java.io.IOException;
 
 public class JacksonSerDe implements ISerDe {
 	private ObjectMapper objectMapper;
+	public JacksonSerDe(){
+		this(new ObjectMapper());
+	}
 
 	public JacksonSerDe(ObjectMapper objectMapper) {
 

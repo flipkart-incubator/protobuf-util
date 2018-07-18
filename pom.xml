@@ -9,7 +9,7 @@
 	<modules>
 		<module>proto-example</module>
 		<module>proto-generator</module>
-    <module>benchmark</module>
+        <module>benchmark</module>
 		<module>serde</module>
 	</modules>
 

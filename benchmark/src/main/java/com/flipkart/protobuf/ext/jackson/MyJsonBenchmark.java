@@ -29,16 +29,16 @@
  * THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.flipkart.protobuf.ext;
+package com.flipkart.protobuf.ext.jackson;
 
 import com.flipkart.protobuf.ext.serde.json.JacksonSerDeUtil;
 import org.openjdk.jmh.annotations.*;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Random;
 
 public class MyJsonBenchmark {
-
 	@State(value = Scope.Benchmark)
 	public static class MyState {
 		public String jsonFilePath = "/Users/gaurav.prasad/gitCurrent/fk-github/protobuf-util/benchmark/src/main/resources/json/cart_response.txt";
@@ -47,7 +47,7 @@ public class MyJsonBenchmark {
 	}
 
 
-	@Benchmark
+	//@Benchmark
 	public void myJsonBenchmark(MyState myState) throws Exception {
 		myState.jacksonSerDeUtil.deserialize();
 	}
