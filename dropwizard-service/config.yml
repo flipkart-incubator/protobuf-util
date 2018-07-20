@@ -1,0 +1,11 @@
+server:
+  applicationConnectors:
+    - type: http
+      port: 9938
+  adminConnectors:
+      - type: http
+        port: 9939
+logging:
+  level: INFO
+  loggers:
+    com.flipkart.dropwizard.benchmark: DEBUG
