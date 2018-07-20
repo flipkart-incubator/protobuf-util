@@ -11,6 +11,7 @@
 		<module>proto-generator</module>
         <module>benchmark</module>
 		<module>serde</module>
+		<module>grpc-server</module>
 	</modules>
 
 	<properties>

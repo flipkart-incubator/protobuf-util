@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.flipkart.protobuf.ext.server";
+option java_outer_classname = "CartServiceProto";
+option objc_class_prefix = "HLW";
+import "cart/client/v2/datamodels/CartInfo.proto";
+service CartService {
+    rpc GetCart (GetRequest) returns (.cart.client.v2.datamodels.CartInfo) {}
+}
+
+message GetRequest {
+    string id = 1;
+}
