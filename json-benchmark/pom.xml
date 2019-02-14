@@ -1,52 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-Copyright (c) 2014, Oracle America, Inc.
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are met:
-
- * Redistributions of source code must retain the above copyright notice,
-   this list of conditions and the following disclaimer.
-
- * Redistributions in binary form must reproduce the above copyright
-   notice, this list of conditions and the following disclaimer in the
-   documentation and/or other materials provided with the distribution.
-
- * Neither the name of Oracle nor the names of its contributors may be used
-   to endorse or promote products derived from this software without
-   specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-THE POSSIBILITY OF SUCH DAMAGE.
---><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <parent>
-    <artifactId>protobuf-util</artifactId>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <groupId>com.flipkart.protobuf.ext</groupId>
     <version>1.0-SNAPSHOT</version>
-  </parent>
-
-    <groupId>com.flipkart.protobuf.ext</groupId>
-    <artifactId>benchmark</artifactId>
-    <version>1.0</version>
-    <packaging>jar</packaging>
-
-    <name>JMH benchmark sample: Java</name>
-
-    <!--
-       This is the demo/sample template build script for building Java benchmarks with JMH.
-       Edit as needed.
-    -->
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>json-benchmark</artifactId>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <jmh.version>1.21</jmh.version>
+        <javac.target>1.8</javac.target>
+        <uberjar.name>benchmarks</uberjar.name>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
 
     <dependencies>
         <dependency>
@@ -54,6 +22,7 @@ THE POSSIBILITY OF SUCH DAMAGE.
             <artifactId>jmh-core</artifactId>
             <version>${jmh.version}</version>
         </dependency>
+
         <dependency>
             <groupId>org.openjdk.jmh</groupId>
             <artifactId>jmh-generator-annprocess</artifactId>
@@ -62,31 +31,62 @@ THE POSSIBILITY OF SUCH DAMAGE.
         </dependency>
 
         <dependency>
-            <groupId>com.flipkart.protobuf.ext</groupId>
-            <artifactId>serde</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.8.8</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.8.8</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-joda</artifactId>
+            <version>2.8.8</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-guava</artifactId>
+            <version>2.8.8</version>
+        </dependency>
+
+        <dependency>
+            <groupId>flipkart.cp.convert.cart</groupId>
+            <artifactId>cart-client</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+
 
     </dependencies>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <repositories>
 
-        <!--
-            JMH version to use with this project.
-          -->
-        <jmh.version>1.21</jmh.version>
+        <!--<repository>-->
+        <!--<id>clojars</id>-->
+        <!--<name>Clojars repository</name>-->
+        <!--<url>https://clojars.org/repo</url>-->
+        <!--</repository>-->
 
-        <!--
-            Java source/target to use for compilation.
-          -->
-        <javac.target>1.8</javac.target>
-
-        <!--
-            Name of the benchmark Uber-JAR to generate.
-          -->
-        <uberjar.name>benchmarks</uberjar.name>
-    </properties>
+        <repository>
+            <id>Central</id>
+            <name>Central Repository</name>
+            <url>http://central.maven.org/maven2/</url>
+        </repository>
+        <repository>
+            <id>fk-art-snapshot</id>
+            <name>Flipkart-Artifactory</name>
+            <url>http://artifactory.fkinternal.com/artifactory/v1.0/artifacts/libs-snapshots-local</url>
+        </repository>
+        <repository>
+            <id>fk-art-release</id>
+            <name>Flipkart-Artifactory</name>
+            <url>http://artifactory.fkinternal.com/artifactory/v1.0/artifacts/libs-release-local</url>
+        </repository>
+    </repositories>
 
     <build>
         <plugins>
@@ -177,5 +177,4 @@ THE POSSIBILITY OF SUCH DAMAGE.
             </plugins>
         </pluginManagement>
     </build>
-
 </project>

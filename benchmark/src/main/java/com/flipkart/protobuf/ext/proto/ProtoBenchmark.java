@@ -80,7 +80,7 @@ public class ProtoBenchmark {
 	public static void main(final String[] args) throws RunnerException {
 		Options opt = new OptionsBuilder()
 				.include(ProtoBenchmark.class.getSimpleName())
-				.param("dirPath", "/Users/gaurav.prasad/gitCurrent/fk-github/protobuf-util/benchmark/src/main/resources/proto")
+				.param("dirPath", "benchmark/src/main/resources/proto")
 				.mode(Mode.All)
 				.forks(1)
 				.warmupIterations(1)

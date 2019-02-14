@@ -9,7 +9,6 @@ import cart.client.endpoints.common.meta.cart.UserDemographics;
 import cart.client.endpoints.common.meta.cartitem.Quantity;
 import cart.client.modules.adjustments.Amount;
 import cart.client.modules.adjustments.CartItemAdjustment;
-import cart.client.modules.cartdiff.serviceability.ServicesSelectedEntity;
 import cart.client.modules.disbursal.DisbursalItemResponse;
 import cart.client.modules.disbursal.enums.*;
 import cart.client.modules.disbursal.response.*;

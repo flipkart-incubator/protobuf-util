@@ -8,7 +8,7 @@ import java.nio.file.Files;
 
 public class ProtoFileCreator {
 	public static void main(String[] args) throws IOException {
-		File file = new File("/Users/gaurav.prasad/gitCurrent/fk-github/protobuf-util/benchmark/src/main/resources/proto/cart_response.txt");
+		File file = new File("benchmark/src/main/resources/proto/cart_response.txt");
 		Files.write(file.toPath(), CartInfoSample.getSampleCartInfo().toByteArray());
 	}
 }

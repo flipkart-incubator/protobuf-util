@@ -41,7 +41,7 @@ import java.util.Random;
 public class MyJsonBenchmark {
 	@State(value = Scope.Benchmark)
 	public static class MyState {
-		public String jsonFilePath = "/Users/gaurav.prasad/gitCurrent/fk-github/protobuf-util/benchmark/src/main/resources/json/cart_response.txt";
+		public String jsonFilePath = "benchmark/src/main/resources/json/cart_response.txt";
 		public JacksonSerDeUtil jacksonSerDeUtil = new JacksonSerDeUtil(jsonFilePath);
 
 	}

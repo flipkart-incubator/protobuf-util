@@ -1,0 +1,139 @@
+{
+    "errorResponse": null,
+    "cartInfo": {
+        "id": "ACHWI93X4WDG2JDGRBYCE54ORG7M174S:P:A-0001",
+        "domain": "PHYSICAL",
+        "assocType": "ACCOUNT",
+        "assocId": "ACHWI93X4WDG2JDGRBYCE54ORG7M174S",
+        "version": 1541581589414,
+        "cartMetaData": {
+            "userDemographics": {
+                "shippingPincode": "560034",
+                "ipAddress": "115.110.204.53",
+                "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 FKUA/website/41/website/Desktop",
+                "fulfillmentData": null
+            }
+        },
+        "marketPlaceInfoList": [
+            {
+                "marketPlace": "FLIPKART",
+                "marketPlaceItems": [
+                    {
+                        "id": "LSTGLSF6RYMCEWVYZXZW6C7VP:ACHWI93X4WDG2JDGRBYCE54ORG7M174S:P:A-0001:U:SPCMS",
+                        "cartId": "ACHWI93X4WDG2JDGRBYCE54ORG7M174S:P:A-0001",
+                        "itemAddedAgainst": "USER",
+                        "itemSource": "SPCMS",
+                        "itemId": "LSTGLSF6RYMCEWVYZXZW6C7VP",
+                        "parentContext": null,
+                        "parentCartItemId": null,
+                        "cartItemMetaData": {
+                            "quantity": {
+                                "value": 1
+                            },
+                            "exchangeContext": null,
+                            "pricingInfo": {
+                                "pricePoints": {},
+                                "version": "5000000011",
+                                "metaData": null
+                            },
+                            "reservationInfo": null
+                        },
+                        "marketPlaceId": "FLIPKART"
+                    },
+                    {
+                        "id": "LSTGLSF85RHS3YKRYBDUBJKN7:ACHWI93X4WDG2JDGRBYCE54ORG7M174S:P:A-0001:U:SPCMS",
+                        "cartId": "ACHWI93X4WDG2JDGRBYCE54ORG7M174S:P:A-0001",
+                        "itemAddedAgainst": "USER",
+                        "itemSource": "SPCMS",
+                        "itemId": "LSTGLSF85RHS3YKRYBDUBJKN7",
+                        "parentContext": null,
+                        "parentCartItemId": null,
+                        "cartItemMetaData": {
+                            "quantity": {
+                                "value": 1
+                            },
+                            "exchangeContext": null,
+                            "pricingInfo": {
+                                "pricePoints": {},
+                                "version": "5000000027",
+                                "metaData": null
+                            },
+                            "reservationInfo": null
+                        },
+                        "marketPlaceId": "FLIPKART"
+                    },
+                    {
+                        "id": "LSTACCF2NSHVGGSHCTUEUY6MO:ACHWI93X4WDG2JDGRBYCE54ORG7M174S:P:A-0001:U:SPCMS",
+                        "cartId": "ACHWI93X4WDG2JDGRBYCE54ORG7M174S:P:A-0001",
+                        "itemAddedAgainst": "USER",
+                        "itemSource": "SPCMS",
+                        "itemId": "LSTACCF2NSHVGGSHCTUEUY6MO",
+                        "parentContext": null,
+                        "parentCartItemId": null,
+                        "cartItemMetaData": {
+                            "quantity": {
+                                "value": 1
+                            },
+                            "exchangeContext": null,
+                            "pricingInfo": {
+                                "pricePoints": {},
+                                "version": "5000000348",
+                                "metaData": null
+                            },
+                            "reservationInfo": null
+                        },
+                        "marketPlaceId": "FLIPKART"
+                    },
+                    {
+                        "id": "LSTSHOF6CST4G3QBPQZLBOOFI:ACHWI93X4WDG2JDGRBYCE54ORG7M174S:P:A-0001:U:SPCMS",
+                        "cartId": "ACHWI93X4WDG2JDGRBYCE54ORG7M174S:P:A-0001",
+                        "itemAddedAgainst": "USER",
+                        "itemSource": "SPCMS",
+                        "itemId": "LSTSHOF6CST4G3QBPQZLBOOFI",
+                        "parentContext": null,
+                        "parentCartItemId": null,
+                        "cartItemMetaData": {
+                            "quantity": {
+                                "value": 1
+                            },
+                            "exchangeContext": null,
+                            "pricingInfo": {
+                                "pricePoints": {},
+                                "version": "5000000034",
+                                "metaData": null
+                            },
+                            "reservationInfo": null
+                        },
+                        "marketPlaceId": "FLIPKART"
+                    },
+                    {
+                        "id": "LSTHSAECQYZUFDYMRYCWD2TRU:ACHWI93X4WDG2JDGRBYCE54ORG7M174S:P:A-0001:U:SPCMS",
+                        "cartId": "ACHWI93X4WDG2JDGRBYCE54ORG7M174S:P:A-0001",
+                        "itemAddedAgainst": "USER",
+                        "itemSource": "SPCMS",
+                        "itemId": "LSTHSAECQYZUFDYMRYCWD2TRU",
+                        "parentContext": null,
+                        "parentCartItemId": null,
+                        "cartItemMetaData": {
+                            "quantity": {
+                                "value": 1
+                            },
+                            "exchangeContext": null,
+                            "pricingInfo": {
+                                "pricePoints": {},
+                                "version": "5000000103",
+                                "metaData": null
+                            },
+                            "reservationInfo": null
+                        },
+                        "marketPlaceId": "FLIPKART"
+                    }
+                ]
+            },
+            {
+                "marketPlace": "GROCERY",
+                "marketPlaceItems": []
+            }
+        ]
+    }
+}

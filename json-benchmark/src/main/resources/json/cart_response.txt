@@ -1,0 +1,293 @@
+{
+  "id": "ACHWI93X4WDG2JDGRBYCE54ORG7M174S:P:A-0001",
+  "domain": "PHYSICAL",
+  "assocType": "ACCOUNT",
+  "assocId": "ACHWI93X4WDG2JDGRBYCE54ORG7M174S",
+  "version": 1531836107211,
+  "marketPlaceInfoList": [
+    {
+      "marketPlace": "FLIPKART",
+      "cartItems": [
+        {
+          "id": "LSTMOBFF5ZGTY7JHSDHE06MDN:ACHWI93X4WDG2JDGRBYCE54ORG7M174S:P:A-0001:U:SPCMS",
+          "cartId": "ACHWI93X4WDG2JDGRBYCE54ORG7M174S:P:A-0001",
+          "itemAddedAgainst": "USER",
+          "itemSource": "SPCMS",
+          "itemId": "LSTMOBFF5ZGTY7JHSDHE06MDN",
+          "isDeleted": "0",
+          "addedDateTime": 1531836106000,
+          "cartItemMetaData": {
+            "quantity": {
+              "value": 1
+            },
+            "serviceAbilityInfo": {
+              "coreServices": [
+                {
+                  "applicableOn": {
+                    "type": "orderFulfillment",
+                    "value": "REGULAR"
+                  },
+                  "basedOnInfo": [
+                    {
+                      "value": "560034",
+                      "type": "pin"
+                    }
+                  ],
+                  "serviceDetails": {
+                    "serviceNameEnum": "NORMAL_DELIVERY",
+                    "serviceable": true,
+                    "hasOutstandingPurchaseLimit": false,
+                    "outstandingPurchaseLimit": 0,
+                    "serviceCharges": {
+                      "serviceChargeMap": {
+                        "SHIPPING_CHARGE": 0,
+                        "OCTROI_CHARGE": 0
+                      }
+                    },
+                    "errorCode": null,
+                    "errorMsg": null,
+                    "serviceabilityTags": [],
+                    "deliverySla": {
+                      "minSla": 3,
+                      "maxSla": 3,
+                      "internalSla": 0,
+                      "sla": 3,
+                      "speed": "REGULAR",
+                      "serviceabilityHolidays": null,
+                      "deliveryInfo": {
+                        "dispatchDateTime": 1532111399000,
+                        "deliveryDateTime": 1532111399000,
+                        "prepaidDeliveryDateTime": 1532111399000,
+                        "postpaidDeliveryDateTime": 1532111399000,
+                        "promiseAfterDateTime": 1532111399000,
+                        "cutoffDateTime": 1531924800000,
+                        "releaseDate": null
+                      },
+                      "selectedPickUpDetails": null,
+                      "dataBag": {
+                        "sla": 0,
+                        "shipmentMovementType": null,
+                        "cost": 0,
+                        "available": false,
+                        "slotRefId": null,
+                        "sourceRefId": null,
+                        "tags": null,
+                        "sourceEpst": null,
+                        "sourceLpst": null,
+                        "endTime": null,
+                        "startTime": null,
+                        "bookingRefId": null,
+                        "naReason": null,
+                        "dplusiGuaranteed": false,
+                        "dplusiEligible": false
+                      },
+                      "scPreferred": null
+                    },
+                    "pickUpOptions": {},
+                    "slots": [],
+                    "promiseType": "UN_SLOTTED",
+                    "useDefaultSlot": false,
+                    "slotCost": 0,
+                    "maxQuantity": 0,
+                    "defaultPromise": true
+                  },
+                  "postOrderServices": []
+                }
+              ],
+              "addOnServices": [
+                {
+                  "applicableOn": {
+                    "type": "paymentMode",
+                    "value": "prepaid"
+                  },
+                  "basedOnInfo": [
+                    {
+                      "value": "560034",
+                      "type": "pin"
+                    }
+                  ],
+                  "serviceDetails": {
+                    "serviceNameEnum": "PAYMENT_PREPAID_SERVICEABILITY",
+                    "serviceable": true,
+                    "hasOutstandingPurchaseLimit": false,
+                    "outstandingPurchaseLimit": 0,
+                    "serviceCharges": null,
+                    "errorCode": null,
+                    "errorMsg": null,
+                    "serviceabilityTags": null,
+                    "deliverySla": null,
+                    "pickUpOptions": {},
+                    "slots": [],
+                    "promiseType": null,
+                    "useDefaultSlot": false,
+                    "slotCost": 0,
+                    "maxQuantity": 0,
+                    "defaultPromise": false
+                  },
+                  "postOrderServices": null
+                },
+                {
+                  "applicableOn": {
+                    "type": "paymentMode",
+                    "value": "cod"
+                  },
+                  "basedOnInfo": [
+                    {
+                      "value": "560034",
+                      "type": "pin"
+                    }
+                  ],
+                  "serviceDetails": {
+                    "serviceNameEnum": "PAYMENT_POSTPAID_SERVICEABILITY",
+                    "serviceable": true,
+                    "hasOutstandingPurchaseLimit": false,
+                    "outstandingPurchaseLimit": 0,
+                    "serviceCharges": null,
+                    "errorCode": null,
+                    "errorMsg": null,
+                    "serviceabilityTags": null,
+                    "deliverySla": null,
+                    "pickUpOptions": {},
+                    "slots": [],
+                    "promiseType": null,
+                    "useDefaultSlot": false,
+                    "slotCost": 0,
+                    "maxQuantity": 0,
+                    "defaultPromise": false
+                  },
+                  "postOrderServices": null
+                }
+              ],
+              "metaData": {
+                "metaTags": [],
+                "metaMessages": [],
+                "reservationInfo": null,
+                "promised": true,
+                "slotsAvailable": false
+              }
+            },
+            "disbursalItemResponse": {
+              "freebieList": [],
+              "offers": [
+                {
+                  "offerId": "nb:mp:060ab78305",
+                  "basedOn": "OFFER",
+                  "applicableOn": "ITEM",
+                  "giveAwayType": "DISCOUNT",
+                  "disbursalNetAdjustmentDetails": {
+                    "adjustmentName": "PROMOTIONAL_DISCOUNT",
+                    "disbursalType": "DISCOUNT",
+                    "disbursalAmount": {
+                      "value": 0
+                    },
+                    "adjustmentGranularityLevel": null,
+                    "disbursalCalculationType": null,
+                    "disbursalAdjustmentMetaData": null,
+                    "chargesApplicable": [],
+                    "freebieApplicable": []
+                  },
+                  "discountAmount": 0,
+                  "offerMessage": {
+                    "text": {
+                      "small": "Jio:₹2200 Cashback, Recharge Rs198 or 299/m",
+                      "medium": "Jio : get ₹2200 cashback, Recharge with Rs198/299 Per month",
+                      "large": "Jio : get ₹2200 cashback, Recharge with Rs198/299 Per month"
+                    },
+                    "tnc": {
+                      "displayText": "Know More",
+                      "link": null,
+                      "required": true,
+                      "trackingId": null
+                    },
+                    "cta": null,
+                    "messageType": null
+                  },
+                  "message": "Jio:₹2200 Cashback, Recharge Rs198 or 299/m",
+                  "conditional": false
+                }
+              ],
+              "warningMessages": [],
+              "disbursalItemMetaData": {
+                "cancellationIds": null,
+                "shipGroupId": null,
+                "cancellationId": null,
+                "userAction": null,
+                "basketAction": null,
+                "basketEntryAction": null,
+                "pickUpCharge": 0,
+                "returnGroupId": null,
+                "returnPolicyId": null,
+                "effectiveDiscount": 3000,
+                "otherInfo": {}
+              },
+              "freebieItemRefIds": []
+            },
+            "freebieSummary": null,
+            "exchangeContext": null,
+            "fulfilmentInfo": null,
+            "minimalItemInfo": {
+              "title": "Honor 9 Lite (Glacier Grey, 32 GB)",
+              "url": "/honor-9-lite-glacier-grey-32-gb/p/itmff5zgdeckztpk?pid=MOBFF5ZGTY7JHSDH",
+              "imageUrl": "http://img.fkcdn.com/image/100/100/jcp4b680/mobile/z/d/b/honor-9-lite-lld-al10-original-imaffh2qdpanuhp9.jpeg",
+              "vertical": "mobile"
+            },
+            "statusResponse": {
+              "statusCode": "VALID",
+              "itemState": "BUYABLE",
+              "message": "This item is valid"
+            },
+            "itemAdjustment": null,
+            "reservationInfo": null,
+            "attachMetadata": {
+              "showAttach": true,
+              "attachRestrictionReason": "NOT_APPLICABLE"
+            },
+            "serviceabilityGroupId": null
+          },
+          "parentContext": null,
+          "parentCartItemId": null,
+          "marketPlaceId": "FLIPKART"
+        }
+      ],
+      "marketPlaceMetaData": {
+        "serviceAbilityInfo": null,
+        "servicesSelected": null,
+        "marketPlaceAdjustments": null,
+        "offerD2RMessage": null,
+        "d2RMessage": null,
+        "shippingD2R": {},
+        "minimumBuyabilityInfoOptional": null,
+        "marketPlaceServiceable": true
+      }
+    }
+  ],
+  "cartMetaData": {
+    "userDemographics": {
+      "shippingPincode": "560034",
+      "ipAddress": "115.110.204.62",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 Safari/537.36",
+      "fulfillmentData": null
+    },
+    "userInfo": null,
+    "sourceCartInfo": null,
+    "offersD2r": null,
+    "offersCritical": false,
+    "serviceAbilityInfo": {
+      "coreServices": [],
+      "addOnServices": [],
+      "metaData": {
+        "metaTags": [],
+        "metaMessages": [],
+        "reservationInfo": null,
+        "promised": null,
+        "slotsAvailable": false
+      }
+    },
+    "servicesSelected": null,
+    "cartLevelAdjustments": [],
+    "policyAppliedList": [],
+    "shippingPinCode": "560034",
+    "registeredFFCustomer": false,
+    "servicesSelectedList": []
+  }
+}

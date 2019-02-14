@@ -1,7 +1,6 @@
-package com.flipkart.protobuf.ext.jackson;
+package com.flipkart.protobuf.ext.proto;
 
-import com.flipkart.protobuf.ext.serde.ISerDe;
-import com.flipkart.protobuf.ext.serde.json.JacksonSerDe;
+import cart.client.v3.endpoints.response.SvcGetCartLiteResponse;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.RunnerException;
@@ -16,26 +15,25 @@ import java.util.List;
 import java.util.Random;
 
 @State(Scope.Benchmark)
-public class JsonBenchmark {
+public class ProtoBenchmark {
 
 	final Random RANDOM = new Random();
 
 	private List<byte[]> byteArrayList;
 
-	private List<Object> objectArrayList;
+	private List<SvcGetCartLiteResponse> objectArrayList;
 
 	@Param("dirPath")
 	String dirPath;
 
 	@Setup
 	public void setup() throws Exception {
-		ISerDe serDe = new JacksonSerDe();
 		List<Path> allFilesPath = getAllFiles(this.dirPath);
 		byteArrayList = new ArrayList<>(allFilesPath.size());
 		objectArrayList = new ArrayList<>(allFilesPath.size());
 		for (Path path : allFilesPath) {
 			byteArrayList.add(Files.readAllBytes(path));
-			objectArrayList.add(serDe.deserialize(Files.readAllBytes(path), Object.class));
+			objectArrayList.add(SvcGetCartLiteResponse.parseFrom(Files.readAllBytes(path)));
 		}
 	}
 
@@ -55,29 +53,29 @@ public class JsonBenchmark {
 		return byteArrayList.get(RANDOM.nextInt(1000) % byteArrayList.size());
 	}
 
-	public Object getRandomObject() {
+	public SvcGetCartLiteResponse getRandomObject() {
 		return objectArrayList.get(RANDOM.nextInt(1000) % byteArrayList.size());
 	}
 
-	private static final ISerDe serDe = new JacksonSerDe();
 
 	@Benchmark()
-	public void deserialize(JsonBenchmark benchmarkData) throws Exception {
-		serDe.deserialize(benchmarkData.getRandomByteArray(), Object.class);
+	public void deserialize(ProtoBenchmark benchmarkData) throws Exception {
+        SvcGetCartLiteResponse response = SvcGetCartLiteResponse.parseFrom(benchmarkData.getRandomByteArray());
 	}
 
 
 	@Benchmark()
-	public void serialize(JsonBenchmark benchmarkData) throws Exception {
-		serDe.serialize(benchmarkData.getRandomObject());
+	public void serialize(ProtoBenchmark benchmarkData) throws Exception {
+		benchmarkData.getRandomObject().toByteArray();
 	}
 
 
 	public static void main(final String[] args) throws RunnerException {
+		String dirPath = args.length > 0 ? args[0]: "proto-benchmark/src/main/resources/proto/cartlite";
 		Options opt = new OptionsBuilder()
-				.include(JsonBenchmark.class.getSimpleName())
-				.param("dirPath", "benchmark/src/main/resources/json")
-				.mode(org.openjdk.jmh.annotations.Mode.All)
+				.include(ProtoBenchmark.class.getSimpleName())
+				.param("dirPath", dirPath)
+				.mode(Mode.All)
 				.forks(1)
 				.warmupIterations(1)
 				.build();

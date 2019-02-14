@@ -12,6 +12,8 @@
         <module>benchmark</module>
 		<module>serde</module>
 		<module>grpc-server</module>
+		<module>json-benchmark</module>
+		<module>proto-benchmark</module>
 	</modules>
 
 	<properties>
@@ -32,6 +34,31 @@
 			<version>2.1.0</version>
 		</dependency>
 	</dependencies>
+
+	<repositories>
+
+		<!--<repository>-->
+			<!--<id>clojars</id>-->
+			<!--<name>Clojars repository</name>-->
+			<!--<url>https://clojars.org/repo</url>-->
+		<!--</repository>-->
+
+		<repository>
+			<id>Central</id>
+			<name>Central Repository</name>
+			<url>http://central.maven.org/maven2/</url>
+		</repository>
+		<repository>
+			<id>fk-art-snapshot</id>
+			<name>Flipkart-Artifactory</name>
+			<url>http://artifactory.fkinternal.com/artifactory/v1.0/artifacts/libs-snapshots-local</url>
+		</repository>
+		<repository>
+			<id>fk-art-release</id>
+			<name>Flipkart-Artifactory</name>
+			<url>http://artifactory.fkinternal.com/artifactory/v1.0/artifacts/libs-release-local</url>
+		</repository>
+	</repositories>
 
 	<build>
 		<plugins>
