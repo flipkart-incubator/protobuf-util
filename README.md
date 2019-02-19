@@ -1,8 +1,8 @@
-# protobuf-util
+### protobuf-util
 Utility library for protobuf
 This library has multiple sub modules
-1. proto-generator:
-   Given java Pojo file it will help in generating .proto file.
+####1. proto-generator:
+   Given java Pojo file it will help in generating .proto file. <br/>
    Below are supported features.
    - Primitive Types
         - Long
@@ -15,6 +15,10 @@ This library has multiple sub modules
         - List
         - Map
         - Set
-    - Inheritance
+####2. json-benchmark: JMH benchmark library for benchmarking JSON 
+####3. proto-benchmark: JMH benchmark library for benchmarking proto file 
+####4. grpc-server: It starts one simple grpc-server which will be used for benchmarking.
+####4. dropwizard-server: It starts one simple dropwizard-server which will be used for benchmarking.
+####4. benchmark: Benchmark library 
     
    
